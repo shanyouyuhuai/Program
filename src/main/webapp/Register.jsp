@@ -60,9 +60,9 @@
 		}
 	}
 
-	function validateaccount() {
+	function validateusername() {
 
-		var account = document.register.account;
+		var username = document.register.username;
 		
 		var xmlhttp = getXMLHttpRequest();
 
@@ -71,14 +71,14 @@
 		xmlhttp.setRequestHeader("Content-type",
 				"application/x-www-form-urlencoded");
 
-		xmlhttp.send("action=validateaccount&account=" + account.value);
+		xmlhttp.send("action=validateaccount&account=" + username.value);
 
 
 		Reg = /^[a-zA-Z0-9_-]{4,16}$/;
 
-		var accountMsg = document.getElementById("accountMsg");
+		var usernameMsg = document.getElementById("usernameMsg");
 
-		if (Reg.test(account.value)) {
+		if (Reg.test(username.value)) {
 
 			xmlhttp.onreadystatechange = function() {
 
@@ -116,9 +116,9 @@
 
 		} else {
 
-			accountMsg.style.color = "red";
+			usernameMsg.style.color = "red";
 
-			accountMsg.innerHTML = "账户不合法";
+			usernameMsg.innerHTML = "账户不合法";
 
 		    flage2= false;
 		}
@@ -256,7 +256,7 @@
 		<tr background="imgs/11.jpg">
 			<td width="50%"></td>
 			<td align="center">
-				<form action="AdminServlet?action=register" method="post"
+				<form action="register" method="post"
 					name="register" enctype="multipart/form-data"
 					onsubmit="return jiaoyan()">
 					<table frame="box" width="600px" height="280px" bordercolor="white">
@@ -278,8 +278,8 @@
 						</tr>
 						<tr>
 							<td align="center"><font color="black"><b>帐&nbsp;&nbsp;&nbsp;&nbsp;号:</b></font></td>
-							<td><input type="text" name="account" onblur="validateaccount()" /></td>
-								<td width="300px"><span id="accountMsg"></span></td>
+							<td><input type="text" name="username" onblur="validateaccount()" /></td>
+								<td width="300px"><span id="usernameMsg"></span></td>
 						</tr>
 						<tr>
 							<td align="center"><font color="black"><b>密&nbsp;&nbsp;&nbsp;&nbsp;码:</b></font></td>

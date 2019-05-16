@@ -95,7 +95,7 @@
 		<tr background="./imgs/65.jpg">
 			<td width="30%"></td>
 			<td align="center">
-				<form action="AdminServlet?action=login" method="post" name="login"
+				<form action="login" method="post" name="login"
 					enctype="application/x-www-form-urlencoded"
 					onsubmit="return test()">
 					 <table frame="box" width="300px" height="280px" bordercolor="white"  class="table table-hover">
@@ -105,7 +105,7 @@
 						</tr>
 						<tr>
 							<td align="center"><b>登录账号:</b></td>
-							<td><input type="text" name="account"/></td>
+							<td><input type="text" name="username"/></td>
 						</tr>
 						<tr>
 							<td align="center"><b>密&nbsp;&nbsp;&nbsp;&nbsp;码:</b></td>
