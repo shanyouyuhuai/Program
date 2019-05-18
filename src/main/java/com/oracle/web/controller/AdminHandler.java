@@ -36,7 +36,7 @@ public class AdminHandler {
 	}
 	
 	
-	@RequestMapping(value = "login",method = RequestMethod.GET)
+	@RequestMapping(value = "/login",method = RequestMethod.GET)
 	public String login(Admin admin){  //登录
 		
 		Admin admin1 = adminService.login(admin);
