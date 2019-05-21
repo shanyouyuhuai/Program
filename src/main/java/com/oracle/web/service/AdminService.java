@@ -8,6 +8,8 @@ public interface AdminService {
 
 	Admin login(Admin admin);
 
+	Admin queryOne(String username);
+
 	
 
 }

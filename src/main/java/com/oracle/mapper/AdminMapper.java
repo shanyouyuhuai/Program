@@ -21,4 +21,6 @@ public interface AdminMapper {
 	int save(Admin admin);
 
 	Admin login(Admin admin);
+
+	Admin queryOne(String username);
 }

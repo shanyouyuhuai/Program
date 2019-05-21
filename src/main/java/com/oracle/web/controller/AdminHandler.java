@@ -1,5 +1,9 @@
 package com.oracle.web.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,8 +22,9 @@ public class AdminHandler {
 	@Autowired
 	private AdminService adminService;
 	
+	//注册
 	@RequestMapping(value = "/register",method = RequestMethod.POST)
-	public String register(Admin admin){         //注册
+	public String register(Admin admin){         
 		
 		int i = adminService.save(admin);
 		
@@ -35,9 +40,10 @@ public class AdminHandler {
 		
 	}
 	
+	//登录
 	
 	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public String login(Admin admin){  //登录
+	public String login(Admin admin){  
 		
 		Admin admin1 = adminService.login(admin);
 		
@@ -55,6 +61,28 @@ public class AdminHandler {
 		
 		return "redirect:/Index.jsp";
 		
+	}
+	
+	
+	//验证
+	
+	public String queryByMame(String username,HttpServletResponse response) throws IOException{
+		
+		Admin a = adminService.queryOne(username);
+		
+		response.setContentType("text/html;charset=utf-8");
+		
+		if(a != null){
+			
+			response.getWriter().write("{\"valid\":\"false\"}");
+			
+		}else{
+			
+			response.getWriter().write("{\"valid\":\"true\"}");//不存在
+			
+		}
+		
+		return NONE;
 	}
 
 }

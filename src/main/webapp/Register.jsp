@@ -15,30 +15,86 @@
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>注册</title>
 <script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript">
-	
-</script>
+<!-- <script type="text/javascript">
+	$(function() {
+		$(".form-horizontal").bootstrapValidator({
+
+
+					feedbackIcons : {
+
+
+						valid : "glyphicon glyphicon-ok",
+						invalid : "glyphicon glyphicon-remove",
+						validating : "glyphicon glyphicon-refresh"
+					},
+
+
+					fields : {
+
+
+						username : {
+
+
+							validators : {
+
+
+								notEmpty : {
+
+
+									message : '用户名不能为空'
+
+
+								},
+
+
+								regexp : {
+
+
+									regexp : /^[A-z0-9_]{3,12}$/,
+									message : '用户名必须由3-12个英文字母、数字和下划线组成'
+
+
+								},
+
+
+								remote : {
+									
+									
+									message : '该用户已被注册，请重新输入',
+
+
+									url : "validate.action",
+
+
+									type : 'post',
+
+
+									data : function(validator) {
+
+
+										return {
+
+
+											userName : $("input[name=username]").val()
+										}
+									}
+								}
+
+
+							}
+						}
+					}
+				});
+	});
+</script> -->
 </head>
 <body>
-<table>
+
 	<div class = "container">
-	
 		<h1 align = "center">图书管理系统----管理员注册</h1>
-		
 		<hr width="1000px">
-		
 		<form action="register" class="form-horizontal" method="post">
 		
-			<!-- 头像 -->
-			<div class="form-group">
-				<label for="touxiang" class="col-sm-4 control-label">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像</label>
-				<div class="col-sm-4">
-					<input type="file" class="form-control" id="touxiang"
-						name="touxiang" />
-				</div>	
-			</div>
-			
-			
 			<!-- 姓名 -->
 			<div class="form-group">
 				<label for="name" class="col-sm-4 control-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
@@ -81,12 +137,14 @@
 					<button type="submit" class="btn btn-info">点击注册</button>
 				</div>
 			</div>
+		
 		</form>
 		
 		<div class="col-sm-offset-5 col-sm-4">
 			<a href="Login.jsp">已经是管理员？直接登录</a>
 		</div>
 	
-	</div>	
+	</div>
+		
 </body>
 </html>
