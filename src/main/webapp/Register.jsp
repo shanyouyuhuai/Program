@@ -15,7 +15,7 @@
 <script type="text/javascript" src="bootstrap/js/bootstrapValidator.js"></script>
 <title>注册</title>
 <script type="text/javascript" src="js/ajax.js"></script>
-<!-- <script type="text/javascript">
+ <script type="text/javascript">
 	$(function() {
 		$(".form-horizontal").bootstrapValidator({
 
@@ -50,8 +50,8 @@
 								regexp : {
 
 
-									regexp : /^[A-z0-9_]{3,12}$/,
-									message : '用户名必须由3-12个英文字母、数字和下划线组成'
+									regexp : /^[A-z0-9_]{3,25}$/,
+									message : '用户名必须由3-25个英文字母、数字和下划线组成'
 
 
 								},
@@ -75,7 +75,7 @@
 										return {
 
 
-											userName : $("input[name=username]").val()
+											username : $("input[name=username]").val()
 										}
 									}
 								}
@@ -86,9 +86,9 @@
 					}
 				});
 	});
-</script> -->
+</script> 
 </head>
-<body>
+<body background="imgs/bg2.jpg">
 
 	<div class = "container">
 		<h1 align = "center">图书管理系统----管理员注册</h1>

@@ -50,7 +50,7 @@
 	<!-- 验证用户名 -->
 	
 	<select id="queryOne" parameterType="Admin" resultMap="BaseResultMap">
-		SELECT * FROM admin WHERE userName=#{userName}
+		SELECT * FROM admin WHERE username=#{username}
 	</select>
 
 

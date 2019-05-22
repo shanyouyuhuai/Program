@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.web.bean.Admin;
 import com.oracle.web.service.AdminService;
@@ -66,6 +67,8 @@ public class AdminHandler {
 	
 	//验证
 	
+	@RequestMapping(value = "/validate.action")
+	@ResponseBody
 	public String queryByMame(String username,HttpServletResponse response) throws IOException{
 		
 		Admin a = adminService.queryOne(username);
