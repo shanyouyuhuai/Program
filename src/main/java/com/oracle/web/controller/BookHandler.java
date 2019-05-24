@@ -31,6 +31,7 @@ public class BookHandler {
 		
 		List<Book> list = bookservice.list();
 		
+
 		
 		request.setAttribute("mlist", list);
 		

@@ -25,6 +25,7 @@ public class BookServiceImpl implements BookService {
 		return this.bookMapper.insert(book);
 	}
 
+	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Book> list() { 
