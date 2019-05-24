@@ -6,6 +6,7 @@
     <id column="bid" jdbcType="INTEGER" property="bid" />
     <result column="fname" jdbcType="VARCHAR" property="fname" />
     <result column="bname" jdbcType="VARCHAR" property="bname" />
+    
     <result column="price" jdbcType="VARCHAR" property="price" />
     <result column="chubanshe" jdbcType="VARCHAR" property="chubanshe" />
     <result column="zhuangtai" jdbcType="VARCHAR" property="zhuangtai" />

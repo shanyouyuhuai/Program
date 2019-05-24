@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Book> list() {
+	public List<Book> list() { 
 		// TODO Auto-generated method stub
 		return this.bookMapper.selectAll();
 	}
