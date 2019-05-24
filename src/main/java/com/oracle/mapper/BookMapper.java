@@ -10,7 +10,7 @@ public interface BookMapper {
     int deleteByPrimaryKey(Integer bid);
 
     int insert(Book record);
-
+    
     Book selectByPrimaryKey(Integer bid);
 
     List<Book> selectAll();
