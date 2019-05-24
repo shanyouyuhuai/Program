@@ -88,12 +88,12 @@ a {
 				width="100px">
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-plusthick"></span><a
-						href="AddClassfies.jsp" target="right"><input type="button"
+						href="AddFenLei.jsp" target="right"><input type="button"
 							value="添加分类" id="btn1" /></a></li>
 				</ul>
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-zoomin"></span><a
-						href="FenLeiServlet?action=ShowClassfiespage" target="right"><input
+						href="ShowFenLei" target="right"><input
 							type="button" value="查看分类" id="btn2"></a></li>
 				</ul>
 				<ul align="center">
@@ -111,12 +111,12 @@ a {
 				width="100px">
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-seek-next"></span><a
-						href="AddBooks.jsp" target="right"><input type="button"
+						href="AddBook.jsp" target="right"><input type="button"
 							value="添加图书" id="btn4" /></a></li>
 				</ul>
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-arrow-1-se"></span><a
-						href="BookServlet?action=ShowBookpage" target="right"><input
+						href="books" target="right"><input
 							type="button" value="查看图书" id="btn5" /></a></li>
 				</ul>
 			</div>

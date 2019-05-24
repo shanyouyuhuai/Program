@@ -1,173 +1,251 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<!-- 1.要使用Bootstrap的话，必须是html5文档-->
+<meta charset="UTF-8">
+<!-- 2.移动设备优先 -->
+<mate name="viewport" content="width=device-width, initial-scale=1">
+<!-- 3.导入核心的css文件 -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
+<!-- 4.需要引入jQuery文件 --> <script type="text/javascript"src="bootstrap/js/jQuery.js"></script> 
+<!-- 5.引入Bootstrap的核心JS文件 --> <scripttype="text/javascript" src="bootstrap/js/bootstrap.js"></script> <!-- <style type="text/css">
+.container {
+	border: 1px solid aqua;
+	background-color: lightpink;
+}
+
+.container-fluid {
+	border: 1px solid green;
+}
+</style> -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>添加图书</title>
 <script type="text/javascript" src="js/ajax.js"></script>
-<script type="text/javascript">
-	var flag;
+ <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+		var flag;
 
-	function validateBName() {
+		function validateBName() {
 
-		var bname = document.add.bname;
+			var bname = document.add.bname;
 
-		var xmlhttp = getXMLHttpRequest();
+			var nameReg = /^[\u0391-\uFFE5_A-z0-9]{1,15}$/;
 
-		xmlhttp.open("POST", "BookServlet", true);
+			var bNameMsg = document.getElementById("bNameMsg");
 
-		xmlhttp.setRequestHeader("Content-type",
-				"application/x-www-form-urlencoded");
+			ajax({
+				method : "POST",
+				url : "BookServlet",
+				params : "action=validateBName&bname=" + bname.value,
+				type : "text",
+				success : function(data) {
+					if (nameReg.test(bname.value)) {
 
-		xmlhttp.send("action=validateBName&bname=" + bname.value);
+						//bnameMsg.style.color = "darkcyan";
 
-		var nameReg = /^[\u0391-\uFFE5_A-z0-9]{1,15}$/;
+						//bnameMsg.innerHTML = "姓名合法";		
 
-		var bNameMsg = document.getElementById("bNameMsg");
+						if (data == "1") {//图书名称已经存在
 
-		if (nameReg.test(bname.value)) {
+							bNameMsg.style.color = "red";
 
-			//bnameMsg.style.color = "darkcyan";
+							bNameMsg.innerHTML = "此图书名称已经存在";
 
-			//bnameMsg.innerHTML = "姓名合法";		
+							bname.focus();
 
-			xmlhttp.onreadystatechange = function() {
+							flag = false;
 
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						} else {//图书名称不存在
 
-					var content = xmlhttp.responseText;
+							bNameMsg.style.color = "darkcyan";
 
-					var span = document.getElementById("bNameMsg");
+							bNameMsg.innerHTML = "此图书名称可以添加";
 
-					if (content == "1") {//图书名称已经存在
+							flag = true;
+						}
+					} else {
 
-						span.style.color = "red";
+						bNameMsg.style.color = "red";
 
-						span.innerHTML = "此图书名称已经存在";
+						bNameMsg.innerHTML = "必须是长度为1-15的汉字字母数字下划线";
 
-						span.focus();
+						bname.focus();
 
 						flag = false;
-
-					} else {//图书名称不存在
-
-						span.style.color = "darkcyan";
-
-						span.innerHTML = "此图书名称可以添加";
-
-						flag = true;
-
 					}
 
 				}
+			})
+		}
 
+		function validatePrice() {
+
+			var price = document.add.price;
+
+			var reg = /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/;
+
+			var priceMsg = document.getElementById("priceMsg");
+
+			if (reg.test(price.value)) {
+
+				priceMsg.style.color = "darkcyan";
+
+				priceMsg.innerHTML = "价格格式合法";
+
+				return true;
+			} else {
+
+				priceMsg.style.color = "red";
+
+				priceMsg.innerHTML = "价格格式不合法，正确格式为  52.11 或   52 或0.99";
+
+				price.focus();
+
+				return false;
 			}
 
-		} else {
+		};
 
-			bNameMsg.style.color = "red";
+		window.onload = function() {
 
-			bNameMsg.innerHTML = "必须是长度为1-15的汉字字母数字下划线";
+			ajax({
 
-			flag = false;
-		}
+				method : "POST",
 
-	}
+				url : "FenleiServlet",
 
-	//2.校验价格
-	function validatePrice() {
+				ansy : true,
 
-		var price = document.add.price;
+				params : "action=updateShowFenlei",
 
-		var reg = /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/;
+				type : "xml",
 
-		var priceMsg = document.getElementById("priceMsg");
+				success : function(data) {
 
-		if (reg.test(price.value)) {
+					var select = document.getElementById("fenleiList");
 
-			priceMsg.style.color = "darkcyan";
+					var names = data.getElementsByTagName("name");
 
-			priceMsg.innerHTML = "价格格式合法";
+					for (var i = 0; i < names.length; i++) {
 
-			flag = true;
-		} else {
+						var name = names[i];
 
-			priceMsg.style.color = "red";
+						var opt = document.createElement("option");
 
-			priceMsg.innerHTML = "价格格式不合法，正确格式为  52.11 或   52 或0.99";
+						var value;
 
-			flag = false;
-		}
+						if (window.addEventListener) {
 
-	}
+							value = name.textContent;
 
-	function addb() {
+						} else {
 
-		//alert(flag);
-		return (flag);
-	}
-</script>
+							value = text;
+						}
+
+						opt.innerHTML = value;
+
+						opt.value = value;
+
+						select.appendChild(opt);
+					}
+				}
+			});
+		};
+
+		function addb() {
+
+			//alert(flag);
+			return (flag) && validatePrice();
+		};
+
+		$(function() {
+
+			$("tr:even").css("background-color", "transparent");
+
+			$("tr:odd").css("background-color", "transparent");
+
+			//事件
+			$("tr").mouseover(function() {
+
+				$(this).css("background-color", "LightYellow");
+			});
+
+			$("tr").mouseout(function() {
+
+				$("tr:even").css("background-color", "transparent");
+
+				$("tr:odd").css("background-color", "transparent");
+			});
+		});
+	</script>
 </head>
-<body background="./imgs/11.jpg">
-	<form action="BookServlet?action=addbooks" method="post"
-		enctype="application/x-www-form-urlencoded" name="add"
-		onsubmit="return addb()">
-		<table align="center" width="600px" height="100px" border="1px"
-			cellspacing="0" bordercolor="silver" >
-			<caption align="top">
-				<h1>
-					<font color="red">添加图书</font>
-				</h1>
-				<hr size="2px" color="red" width="600px" />
-			</caption>
-			<tr align="center">
-				<td>请选择分类:</td>
-				<td><select name="name">
-						<c:forEach items="${updateList }" var="fenlei">
-							<option>${fenlei.name }</option>
-						</c:forEach>
-				</select></td>
-			</tr>
-			
-			<tr align="center">
-				<td width="100px">图&nbsp;书&nbsp;分&nbsp;类:</td>
-				<td width="200px"><input type="text" name="fname"
-					onblur="validatefName()" /></td>
-				<td width="300px"><span id="fNameMsg"></span></td>
-			</tr>
-			<tr align="center">
-				<td width="100px">图&nbsp;书&nbsp;名&nbsp;称:</td>
-				<td width="200px"><input type="text" name="bname"
-					onblur="validateBName()" /></td>
-				<td width="300px"><span id="bNameMsg"></span></td>
-			</tr>
-			<tr align="center">
-				<td width="100px">图&nbsp;书&nbsp;价&nbsp;格:</td>
-				<td width="200px"><input type="text" name="bprice"
-					onblur="validatePrice()" /></td>
-				<td width="300px"><span id="priceMsg"></span></td>
-			</tr>
-			<tr align="center">
-				<td width="100px">出&nbsp;&nbsp;&nbsp;版&nbsp;&nbsp;&nbsp;社:</td>
-				<td width="200px"><input type="text" name="bpublish" /></td>
-			</tr>
-			<tr align="center">
-				<td width="100px">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
-				<td width="200px"><input type="radio" name="status" checked
-					value="未借出" />未借出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-					type="radio" name="status" value="借出" />借出</td>
-			</tr>
-			<tr align="center">
-				<td width="100px">借&nbsp;&nbsp;&nbsp;书&nbsp;&nbsp;&nbsp;人:</td>
-				<td width="200px"><input type="text" name="borrower" /></td>
-			</tr>
-			<tr align="center">
-				<td colspan="2"><input type="submit" value="添加" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-					type="reset" value="重填" /></td>
-			</tr>
-		</table>
-	</form>
+<body background="image/11.jpg">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2">
+				<form action="book" method="post"
+					enctype="application/x-www-form-urlencoded" name="add"
+					onsubmit="return addb()">
+					<br>
+					<h1 class="text-center text-danger">
+						<font face="幼圆">添加图书</font>
+					</h1>
+					<hr>
+					<ul class="nav">
+						<li><b>请选择您想要添加的分类:</b></li>
+						<li><select name="fId" class="form-control">
+								<c:forEach items="${flist }" var="f">
+									<option value="${f.id }">${f.name }</option>
+								</c:forEach>
+						</select>
+					</ul>
+					<br>
+
+					<div class="form-group">
+						<label>图&nbsp;书&nbsp;名&nbsp;称:</label> <input type="text"
+							name="bname" onblur="validateBName()" class="form-control"
+							placeholder="图书名称" /> <span id="bNameMsg"></span>
+					</div>
+					<div class="form-group">
+						<label>图&nbsp;书&nbsp;价&nbsp;格:</label> <input type="text"
+							name="price" onblur="validatePrice()" class="form-control"
+							placeholder="图书价格" /> <span id="priceMsg"></span>
+					</div>
+					<div class="form-group">
+						<label>出&nbsp;&nbsp;&nbsp;版&nbsp;&nbsp;&nbsp;社:</label> <input
+							type="text" name="chubanshe" class="form-control" placeholder="出版社" />
+					</div>
+					<div class="form-group">
+						<label>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label> <label
+							class="radio-inline"> <input type="radio"
+							name="zhuangtai" value="未借出" checked />未借出
+						</label> <label class="radio-inline"> <input type="radio"
+							name="zhuangtai" value="借出" />借出
+						</label>
+					</div>
+					<div class="form-group">
+						<label>借&nbsp;&nbsp;&nbsp;书&nbsp;&nbsp;&nbsp;人:</label> <input
+							type="text" name="jieshuren" checked value="无"
+							class="form-control" />
+					</div>
+					<br>
+					<div class="form-group text-center">
+						<ul class="list-inline">
+							<li><button type="submit" class="btn btn-warning"
+									style="width: 200px;">添加</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button type="reset" class="btn btn-danger"
+									style="width: 200px;">重填</button></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

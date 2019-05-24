@@ -5,6 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body  background="./imgs/14.jpg">
+<body  background="image/14.jpg">
 
 </body>

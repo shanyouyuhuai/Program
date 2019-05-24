@@ -15,7 +15,7 @@
 <!--导入核心css文件 -->
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	window.onload = function() {
 
 		var selectAll = document.getElementById("selectAll");
@@ -190,11 +190,11 @@
 		});
 
 	});
-</script>
+</script> -->
 </head>
-<body background="./imgs/11.jpg">
+<body background="image/12.jpg">
 
-	<div class="container-fluid" id="div1">
+	<!-- <div class="container-fluid" id="div1">
 		<div class="col col-md-5" id="div2">
 
 			<ul class="nav nav-tabs">
@@ -283,7 +283,7 @@
 						</li>
 					</ul>
 		</div>
-	</div>
+	</div> -->
 
 	<table align="center" width="200px" height="20px" frame="void">
 		<caption align="top">
@@ -299,25 +299,26 @@
 	<table align="center" width="600px" height="200px" border="1px"
 		cellspacing="0" bordercolor="silver">
 		<tr align="center">
-			<td>选择</td>
-			<td>图书分类</td>
+			<!-- <td>选择</td> -->
+			<td>图书编号</td>
 			<td>分类名称</td>
+			<td>图书名称</td>
 			<td>图书价格</td>
 			<td>图书出版社</td>
 			<td>状态</td>
 			<td>借书人</td>
 			<td>修改</td>
 		</tr>
-		<c:forEach items="${pb.beanList }" var="q" varStatus="s">
+		<c:forEach items="${mlist }" var="q" varStatus="s">
 			<tr align="center">
-				<td><input type="checkbox" name="ids" value="${q.bid }" /></td>
+				<%-- <td><input type="checkbox" name="ids" value="${q.bid }" /></td> --%>
 				<td>${s.index+1 }</td>
 				<td>${q.fname }</td>
 				<td>${q.bname }</td>
-				<td>${q.bprice }</td>
-				<td>${q.bpublish}</td>
-				<td>${q.status }</td>
-				<td>${q.borrower }</td>
+				<td>${q.price }</td>
+				<td>${q.chubanshe}</td>
+				<td>${q.zhuangtai }</td>
+				<td>${q.jieshuren }</td>
 				<td><a href="BookServlet?action=showone&bid=${q.bid }"><input
 						type="submit" value="修改" /></a></td>
 			</tr>
