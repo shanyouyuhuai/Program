@@ -307,6 +307,7 @@
 			<td>图书出版社</td>
 			<td>状态</td>
 			<td>借书人</td>
+			<td>删除</td>
 			<td>修改</td>
 		</tr>
 		<c:forEach items="${mlist }" var="q" varStatus="s">
@@ -319,11 +320,16 @@
 				<td>${q.chubanshe}</td>
 				<td>${q.zhuangtai }</td>
 				<td>${q.jieshuren }</td>
-				<td><a href="BookServlet?action=showone&bid=${q.bid }"><input
+				<td><a href="book/${q.bid }" class="deleteId"><input
+						type="submit" value="删除" /></a></td>
+				<td><a href="book/${q.bid }"><input
 						type="submit" value="修改" /></a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	<form action="book" method="post">
+	  <input type="hidden" name="_method" value="DELETE">
+	</form>
 	<p>
 	<center>
 		<ul class="pagination">
@@ -382,7 +388,7 @@
 	<p>
 	<table align="center">
 		<tr align="center">
-			<td>没有您需要的图书？您可以点击这里<a href="AddBooks.jsp">添加图书</a></td>
+			<td>没有您需要的图书？您可以点击这里<a href="AddBook.jsp">添加图书</a></td>
 		</tr>
 	</table>
 </body>

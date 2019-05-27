@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,12 +32,10 @@ public class BookHandler {
 		
 		List<Book> list = bookservice.list();
 		
-
-		
-		request.setAttribute("mlist", list);
+		request.getSession().setAttribute("mlist", list);
 		
 		
-		return "ShowBooks";
+		return "ShowBooks.jsp";
 	}
 	
 	@RequestMapping(value="/addUI",method=RequestMethod.GET)
@@ -58,5 +57,19 @@ public class BookHandler {
 		bookservice.save(book);
 		
 		return "redirect:/books";
+	}
+	
+	@RequestMapping(value="/book/{bid}" ,method=RequestMethod.DELETE)
+	
+	public String delete(@PathVariable("bid") Integer bid){
+		
+		Book book =new Book();
+		
+		book.setBid(bid);
+		
+		bookservice.delete(book);
+		
+		return "redirect:/books";
+		
 	}
 }

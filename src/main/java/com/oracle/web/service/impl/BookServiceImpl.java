@@ -33,4 +33,12 @@ public class BookServiceImpl implements BookService {
 		return this.bookMapper.selectAll();
 	}
 
+
+	@Override
+	public void delete(Book book) {
+		// TODO Auto-generated method stub
+		
+	 this.bookMapper.deleteByPrimaryKey(book.getBid());
+	}
+
 }

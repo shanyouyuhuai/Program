@@ -11,5 +11,7 @@ public interface BookService {
 
 	List<Book> list();
 
+	void delete(Book book);
+
 	
 }
