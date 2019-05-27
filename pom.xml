@@ -148,18 +148,16 @@
 				<version>6.1.26</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
-<<<<<<< HEAD
-					<webApp>${basedir}/target/manager</webApp>
-=======
+
+		
+
 					<webApp>${basedir}/target/Program</webApp>
->>>>>>> branch 'master' of https://github.com/shanyouyuhuai/Program.git
+
 					<webAppConfig>
 						<!-- 访问路径 根路径访问，演示/test4又是什么情况 -->
-<<<<<<< HEAD
-						<contextPath>/manager</contextPath>
-=======
+
 						<contextPath>/Program</contextPath>
->>>>>>> branch 'master' of https://github.com/shanyouyuhuai/Program.git
+
 					</webAppConfig>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">

@@ -25,7 +25,7 @@
 
 		<h1 align="center">图书管理系统----管理员登录</h1>
 		<hr width="1000px">
-		<form action="login" class="form-horizontal" method="post">
+		<form action="login" class="form-horizontal" method="get">
 
 			<!-- 用户名 -->
 			<div class="form-group">
