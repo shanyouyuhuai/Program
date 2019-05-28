@@ -35,10 +35,27 @@ public class BookServiceImpl implements BookService {
 
 
 	@Override
+	@Transactional
 	public void delete(Book book) {
 		// TODO Auto-generated method stub
 		
 	 this.bookMapper.deleteByPrimaryKey(book.getBid());
+	}
+
+
+	@Override
+	@Transactional
+	public void update(Book book) {
+		// TODO Auto-generated method stub
+		
+		this.bookMapper.updateByPrimaryKey(book);
+	}
+
+
+	@Override
+	public Book queryone(Integer bid) {
+		// TODO Auto-generated method stub
+		return this.bookMapper.selectByPrimaryKey(bid);
 	}
 
 }

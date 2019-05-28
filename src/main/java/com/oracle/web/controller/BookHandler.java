@@ -3,6 +3,7 @@ package com.oracle.web.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -32,10 +33,15 @@ public class BookHandler {
 		
 		List<Book> list = bookservice.list();
 		
-		request.getSession().setAttribute("mlist", list);
+		for(Book b:list){
+			
+			System.out.println(b);
+		}
+		
+		request.setAttribute("mlist", list);
 		
 		
-		return "ShowBooks.jsp";
+		return "ShowBooks";
 	}
 	
 	@RequestMapping(value="/addUI",method=RequestMethod.GET)
@@ -44,9 +50,9 @@ public class BookHandler {
 		
 		List<Fenlei> flist=fenleiservice.list();
 		
-		request.setAttribute("flist", flist);
+		request.getSession().setAttribute("flist", flist);
 		
-		return "addBook";
+		return "redirect:/AddBook.jsp";
 		
 	}
 	
@@ -71,5 +77,27 @@ public class BookHandler {
 		
 		return "redirect:/books";
 		
+	}
+	
+	@RequestMapping(value="/book/{bid}", method=RequestMethod.GET)
+	public String updateUI(@PathVariable("bid") Integer bid,HttpSession session){
+		
+		Book book =bookservice.queryone(bid);
+		
+		session.setAttribute("book", book);
+		
+		List<Fenlei> flist =fenleiservice.list();
+		
+		session.setAttribute("fList", flist);
+		
+		return "redirect:/ChangeBook.jsp";
+		
+	}
+	@RequestMapping(value="/book",method=RequestMethod.PUT)
+	public String updatebook(Book book){
+		
+		bookservice.update(book);
+		
+		return "redirect:/books";
 	}
 }

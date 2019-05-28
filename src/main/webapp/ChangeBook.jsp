@@ -13,39 +13,39 @@
 		<h3 align="center">修改图书信息</h3>
 		<hr width="1000px">
 
-		<form action="book" class="form-horizontal" method="post">
+		<form action="book" method="post" enctype="application/x-www-form-urlencoded">
 
-			<input type="hidden" name="_method" value="PUT"> <input
-				type="hidden" name="id" value="${book.id } }" />
+			<input type="hidden" name="_method" value="PUT"> 
+			<input type="hidden" name="id" value="${book.bid }" />
 				
 				<ul class="nav">
 				<li><b>请选择您想要修改的分类:</b></li>
 				<li>
 				<select name="fId" class="form-control">
 				
-				<c:forEach items="${flist }" var="f">
-				  <c:if test="${f.id ==book.fenlei.id }">
+				<c:forEach items="${fList }" var="f">
+				  <c:if test="${f.fId == book.fId }">
 				  
-				  <option value="${f.id }" selected="selected">${f.name }</option>
+				  <option value="${f.fId }" selected="selected">${f.fname }</option>
 				  </c:if>
-				  <c:if test="${f.id!=book.fenlei.id }">
+				  <c:if test="${f.fId != book.fId }">
 				  
-				  <option value="${f.id }">${f.name }</option>
+				  <option value="${f.fId }">${f.fname }</option>
 				  </c:if>
 				</c:forEach>
 				</select>
 				</li>
 				</ul>
 			<div class="form-group">
-				<label for="monstername" class="col-sm-4 control-label">图书名称</label>
+				<label >图书名称</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" 
-						name="banem" value="${book.bname }">
+						name="bname" value="${book.bname }">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="email" class="col-sm-4 control-label">图书价格</label>
+				<label >图书价格</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"name="price"
 						value="${book.price }">
@@ -53,14 +53,14 @@
 			</div>
 
 			<div class="form-group">
-				<label for="birthday" class="col-sm-4 control-label">出版社</label>
+				<label >出版社</label>
 				<div class="col-sm-4">
-					<input type=text" class="form-control"
+					<input type="text" class="form-control"
 						name="chubanshe" value="${book.chubanshe }" /></div>
 			</div>
 
 			<div class="form-group">
-				<label for="entryday" class="col-sm-4 control-label">状态</label>
+				<label >状态</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" 
 						name="zhuangtai" value="${book.zhuangtai }" />
@@ -68,7 +68,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="entryday" class="col-sm-4 control-label">借书人</label>
+				<label >借书人</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" 
 						name="jieshuren" value="${book.jieshuren }" />

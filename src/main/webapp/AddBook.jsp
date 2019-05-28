@@ -200,7 +200,7 @@
 						<li><b>请选择您想要添加的分类:</b></li>
 						<li><select name="fId" class="form-control">
 								<c:forEach items="${flist }" var="f">
-									<option value="${f.id }">${f.name }</option>
+									<option value="${f.fId }">${f.fname }</option>
 								</c:forEach>
 						</select>
 					</ul>
