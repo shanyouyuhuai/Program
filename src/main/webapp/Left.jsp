@@ -22,7 +22,7 @@ a {
 <script type="text/javascript">
 	$(function() {
 
-		$("#accordion").accordion();
+		/* $("#accordion").accordion(); */
 
 		$("#btn1").button({
 
@@ -83,7 +83,7 @@ a {
 	<div id="accordion">
 		<h3>分类管理</h3>
 
-		<div id="classfies">
+		<div id="Fenlei">
 			<div frame="void" height="80px" align="center" cellspacing="0"
 				width="100px">
 				<ul align="center">
@@ -111,7 +111,7 @@ a {
 				width="100px">
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-seek-next"></span><a
-						href="AddBook.jsp" target="right"><input type="button"
+						href="addUI" target="right"><input type="button"
 							value="添加图书" id="btn4" /></a></li>
 				</ul>
 				<ul align="center">

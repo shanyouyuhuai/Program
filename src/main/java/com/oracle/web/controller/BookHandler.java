@@ -92,7 +92,7 @@ public class BookHandler {
 		
 		return "redirect:/ChangeBook.jsp";
 		
-	}
+	} 
 	@RequestMapping(value="/book",method=RequestMethod.PUT)
 	public String updatebook(Book book){
 		

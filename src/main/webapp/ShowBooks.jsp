@@ -15,6 +15,22 @@
 <!--导入核心css文件 -->
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
+<script type="text/javascript">
+$(function(){
+$(".deleteId").click(function(){
+	
+	var $url =this.href;
+	
+	$("#deleteForm").attr("action",$url);
+	
+	$("#deleteForm").submit();
+	
+	return false;
+   });
+});
+</script>
+
 <!-- <script type="text/javascript">
 	window.onload = function() {
 
@@ -287,12 +303,7 @@
 
 	<table align="center" width="200px" height="20px" frame="void">
 		<caption align="top">
-			<h1>
-				<font color="red">查看图书</font>
-			</h1>
-
-			<hr>
-
+		<h3 align="center"><font color="red">查看图书</font></h3>
 		</caption>
 		
 	</table>
@@ -327,7 +338,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<form action="book" method="post">
+	<form action="" method="post" id="deleteForm">
 	  <input type="hidden" name="_method" value="DELETE">
 	</form>
 	<p>
