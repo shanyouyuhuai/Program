@@ -6,5 +6,5 @@
   <frameset cols="300px,*">
     <frame src="Left.jsp" name="left">
 	<frame src="Right.jsp" name="right">
-  </frameset>
+  </frameset> 
 </frameset>

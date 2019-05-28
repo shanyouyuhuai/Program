@@ -47,7 +47,7 @@
       chubanshe = #{chubanshe,jdbcType=VARCHAR},
       zhuangtai = #{zhuangtai,jdbcType=VARCHAR},
       jieshuren = #{jieshuren,jdbcType=VARCHAR},
-      f_id = #{fId,jdbcType=INTEGER}
+      f_id = #{fId,jdbcType=INTEGER} 
     where bid = #{bid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

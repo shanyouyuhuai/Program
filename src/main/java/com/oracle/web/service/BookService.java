@@ -12,7 +12,7 @@ public interface BookService {
 	List<Book> list();
 
 	void delete(Book book);
-
+ 
 	void update(Book book);
 
 	Book queryone(Integer bid);
