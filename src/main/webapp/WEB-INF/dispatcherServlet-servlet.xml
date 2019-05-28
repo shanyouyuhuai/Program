@@ -30,6 +30,6 @@
 
 <!--Springmvc 默认是不支持js和css 需要开启对js和css 的支持  -->
 
-<mvc:annotation-driven/>
+ <mvc:annotation-driven/>
 <mvc:default-servlet-handler/>
 </beans>

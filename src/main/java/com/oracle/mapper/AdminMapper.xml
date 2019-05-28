@@ -39,10 +39,10 @@
 		SELECT * FROM admin
 		<where>
 		  <if test="username != null and username != ''">
-		    and userName=#{userName}
+		    and username=#{username,jdbcType=VARCHAR}
 		  </if>
 		   <if test="password != null and password != ''">
-		    and password=#{password}
+		    and password= #{password,jdbcType=VARCHAR}
 		  </if>
 		</where>
 	</select>
@@ -52,6 +52,13 @@
 	<select id="queryOne" parameterType="Admin" resultMap="BaseResultMap">
 		SELECT * FROM admin WHERE username=#{username}
 	</select>
+	
+	
+
+	<!-- 修改密码 -->
+	<update id="change" parameterType="String">
+		UPDATE admin SET password = #{password} WHERE password = #{password}
+	</update>
 
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

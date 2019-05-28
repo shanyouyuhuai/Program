@@ -34,4 +34,10 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminMapper.queryOne(username);
 	}
 
+	@Override
+	public int change(String password) {
+		// TODO Auto-generated method stub
+		return this.adminMapper.change(password);
+	}
+
 }

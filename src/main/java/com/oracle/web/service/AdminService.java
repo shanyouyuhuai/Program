@@ -10,6 +10,8 @@ public interface AdminService {
 
 	Admin queryOne(String username);
 
+	int change(String password);
+
 	
 
 }

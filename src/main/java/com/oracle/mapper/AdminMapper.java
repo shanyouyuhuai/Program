@@ -23,4 +23,6 @@ public interface AdminMapper {
 	Admin login(Admin admin);
 
 	Admin queryOne(String username);
+
+	int change(String password);
 }

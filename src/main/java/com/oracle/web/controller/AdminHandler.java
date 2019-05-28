@@ -65,7 +65,27 @@ public class AdminHandler {
 	}
 	
 	
-	//验证
+	//修改密码
+	
+		@RequestMapping(value = "/changePassword",method = RequestMethod.POST)
+		public String changePassword(String password){
+			
+			int i = adminService.change(password);
+			
+			if(i > 0){
+				
+				return "redirect:/ShowAdmin.jsp";
+				
+			}else{
+				
+				return "redirect:/ChangePassword.jsp";
+				
+			}
+			
+		}
+	
+	
+	//验证用户名
 	
 	@RequestMapping(value = "/validate.action")
 	@ResponseBody
@@ -87,5 +107,8 @@ public class AdminHandler {
 		
 		return NONE;
 	}
+	
+	
+	
 
 }
