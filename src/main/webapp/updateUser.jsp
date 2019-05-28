@@ -24,7 +24,7 @@
 				</h1>
 				<hr size="2px" color="red" width="600px" />
 			</caption>
-			
+			 
 			<tr align="center">
 				<td>真实姓名:</td>
 				<td><input type="text" name="realname" value="${u.realname }"/></td>

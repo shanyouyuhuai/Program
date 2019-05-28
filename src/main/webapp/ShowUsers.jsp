@@ -292,7 +292,7 @@
 
 			<c:choose>
 
-				<c:when test="${pb.pageNow==i }">[${i }]</c:when>
+				<c:when test="${pb.pageNow==i }">[${i }]</c:when> 
 				<c:otherwise>
 
 					<a href="UserServlet?action=ShowUserpage&pageNow=${i }">[${i }]</a>

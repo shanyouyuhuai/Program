@@ -9,7 +9,7 @@ public interface UserMapper {
      * This method corresponds to the database table user
      *
      * @mbg.generated Wed May 08 12:26:45 CST 2019
-     */
+     */ 
     int deleteByPrimaryKey(Integer id);
 
     /**

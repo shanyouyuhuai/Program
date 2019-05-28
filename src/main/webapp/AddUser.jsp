@@ -83,7 +83,7 @@ function validateaccount() {
 					flag = false;
 
 				} else {//用户名不存在 
-
+ 
 					accountMsg.style.color = "darkcyan";
 
 					accountMsg.innerHTML = "此用户名可以添加";
