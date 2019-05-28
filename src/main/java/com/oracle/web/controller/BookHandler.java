@@ -18,7 +18,7 @@ import com.oracle.web.bean.SubBook;
 import com.oracle.web.service.BookService;
 import com.oracle.web.service.FenleiService;
 
-@Controller
+@Controller 
 @Scope(value="prototype")
 public class BookHandler {
 
