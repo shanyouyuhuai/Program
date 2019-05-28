@@ -19,7 +19,7 @@
 </script>
 <title>登录</title>
 </head>
-<body background="imgs/bg2.jpg">
+<body background="image/bg2.jpg">
 
 	<div class="container">
 

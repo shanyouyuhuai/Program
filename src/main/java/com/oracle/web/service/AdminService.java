@@ -12,6 +12,10 @@ public interface AdminService {
 
 	int change(String password);
 
+	Admin selectByPrimaryKey(String username);
+
+
+
 	
 
 }

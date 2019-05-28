@@ -88,7 +88,7 @@
 	});
 </script> 
 </head>
-<body background="imgs/bg2.jpg">
+<body background="image/bg2.jpg">
 
 	<div class = "container">
 		<h1 align = "center">图书管理系统----管理员注册</h1>

@@ -2,7 +2,9 @@ package com.oracle.web.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -106,6 +108,35 @@ public class AdminHandler {
 		}
 		
 		return NONE;
+	}
+	
+	
+	//查看管理员
+	@RequestMapping(value = "/showAdmin",method = RequestMethod.GET)
+	public String showAdmin(String username,HttpServletRequest request){
+		
+		Admin a = adminService.selectByPrimaryKey(username);
+		
+		request.setAttribute("madmin", a);
+		
+		return "redirect:/ShowAdmin.jsp";
+		
+	}
+	
+	
+	//退出登录
+	@RequestMapping(value = "_parent")
+	public String exit(HttpServletResponse resp,HttpSession session) throws IOException{
+		
+		//1.清空session
+		session.invalidate();
+		
+		//2.跳转到登录界面
+		
+		resp.sendRedirect("Login.jsp");
+		
+		return  "redirect:/Login.jsp";
+		
 	}
 	
 	
