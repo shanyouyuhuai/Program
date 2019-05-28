@@ -26,9 +26,6 @@
 			</caption>
 			
 			<tr align="center">
-			<td>头像:</td>
-				<td><img src="/img${u.touxiang }" id="img"><input type="file" name="touxiang" value="${u.touxiang }"/></td>
-			</tr>
 				<td>真实姓名:</td>
 				<td><input type="text" name="realname" value="${u.realname }"/></td>
 			</tr>

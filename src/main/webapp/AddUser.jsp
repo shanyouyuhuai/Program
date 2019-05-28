@@ -82,7 +82,7 @@ function validateaccount() {
 
 					flag = false;
 
-				} else {//用户名不存在
+				} else {//用户名不存在 
 
 					accountMsg.style.color = "darkcyan";
 

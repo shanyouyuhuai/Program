@@ -222,8 +222,6 @@
 		<tr>
 			<td>编号</td>
 			<td>姓名</td>
-			<td>用户名</td>
-			<td>头像</td>
 			<td>密码</td>
 			<td>手机</td>
 			<td>注册时间</td>
@@ -235,8 +233,7 @@
 				<td><input type="checkbox" name="ids2" value="${s.id }" /></td>
 				<td>${u.index+1 }</td>
 				<td>${s.id }</td>
-				<td><img src="/img${s.touxiang }" id="img"></td>
-				<td>${s.realname }</td>
+				<td>${s.name }</td>
 				<td>${s.username }</td>
 				<td>${s.password }</td>
 				<td>${s.phone }</td>
