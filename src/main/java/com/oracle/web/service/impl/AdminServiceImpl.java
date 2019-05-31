@@ -40,4 +40,11 @@ public class AdminServiceImpl implements AdminService {
 		return this.adminMapper.change(password);
 	}
 
+	@Override
+	public Admin selectByPrimaryKey(String username) {
+		// TODO Auto-generated method stub
+		return this.adminMapper.selectByPrimaryKey(username);
+	}
+
+
 }

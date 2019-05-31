@@ -17,7 +17,7 @@
 	
 </script>
 </head>
-<body background="imgs/1.jpg">
+<body background="image/1.jpg">
 	<div class="container">
 		<h1 align="center">修改密码</h1>
 		<hr width="1000px">
