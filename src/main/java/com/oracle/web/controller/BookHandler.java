@@ -32,14 +32,8 @@ public class BookHandler {
 	public String books(HttpServletRequest request){
 		
 		List<Book> list = bookservice.list();
-		
-		for(Book b:list){
-			
-			System.out.println(b);
-		}
-		
+	
 		request.setAttribute("mlist", list);
-		
 		
 		return "ShowBooks";
 	}

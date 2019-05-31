@@ -16,7 +16,7 @@
 		<form action="book" method="post" enctype="application/x-www-form-urlencoded">
 
 			<input type="hidden" name="_method" value="PUT"> 
-			<input type="hidden" name="id" value="${book.bid }" />
+			<input type="hidden" name="bid" value="${book.bid }" />
 				
 				<ul class="nav">
 				<li><b>请选择您想要修改的分类:</b></li>
@@ -36,6 +36,14 @@
 				</select>
 				</li>
 				</ul>
+				
+				<div class="form-group">
+				<label >分类名称</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" 
+						name="fname" value="${book.fname }">
+				</div>
+			</div>
 			<div class="form-group">
 				<label >图书名称</label>
 				<div class="col-sm-4">

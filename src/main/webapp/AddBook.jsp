@@ -205,7 +205,11 @@
 						</select>
 					</ul>
 					<br>
-
+                      <div class="form-group">
+						<label>分&nbsp;类&nbsp;名&nbsp;称:</label> <input type="text"
+							name="fname" class="form-control"
+							placeholder="分类名称" />
+					</div>
 					<div class="form-group">
 						<label>图&nbsp;书&nbsp;名&nbsp;称:</label> <input type="text"
 							name="bname" onblur="validateBName()" class="form-control"
