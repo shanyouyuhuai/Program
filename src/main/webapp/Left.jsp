@@ -148,7 +148,7 @@ a {
 				width="100px">
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-lightbulb"></span><a
-						href="ShowAdmin.jsp" target="right"><input type="button"
+						href="showAdmin" target="right"><input type="button"
 							value="查看管理员" id="btn8" /></a></li>
 				</ul>
 				<ul align="center">

@@ -35,17 +35,9 @@
   
   
   <!-- 登录 -->
-  <select id="login" parameterType="Admin" resultMap="BaseResultMap">
-		SELECT * FROM admin
-		<where>
-		  <if test="username != null and username != ''">
-		    and username=#{username,jdbcType=VARCHAR}
-		  </if>
-		   <if test="password != null and password != ''">
-		    and password= #{password,jdbcType=VARCHAR}
-		  </if>
-		</where>
-	</select>
+  <select id="login" parameterType="Map" resultType="com.oracle.web.bean.Admin">
+     SELECT * FROM admin WHERE username=#{username,jdbcType=VARCHAR}
+    </select>
 	
 	<!-- 验证用户名 -->
 	
@@ -61,12 +53,9 @@
 	</update>
 
 	<!-- 查看管理员 -->
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    
-    select id,name, phone, username, password
-    from admin
-    where id = #{username,jdbcType=VARCHAR}
-  </select>
+ <select id="selectByPrimaryKey" parameterType="String" resultType="com.oracle.web.bean.Admin">
+     select id, name, phone, username, password FROM admin WHERE username=#{username,jdbcType=VARCHAR}
+    </select>
   
   
   

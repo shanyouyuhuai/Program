@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.web.bean.Admin;
@@ -27,7 +28,7 @@ public class AdminHandler {
 	
 	//注册
 	@RequestMapping(value = "/register",method = RequestMethod.POST)
-	public String register(Admin admin){         
+	public String register(Admin admin){
 		
 		int i = adminService.save(admin);
 		
@@ -45,10 +46,14 @@ public class AdminHandler {
 	
 	//登录
 	
-	@RequestMapping(value = "/login",method = RequestMethod.GET)
-	public String login(Admin admin){  
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public String login(@RequestParam("username") String username,Admin admin,HttpServletRequest req,HttpSession session){
 		
-		Admin admin1 = adminService.login(admin);
+		session.setAttribute("username", username);
+		
+		System.out.println(username);
+		
+		Admin admin1 = adminService.login(admin.getUsername());
 		
 		if(admin1 == null){
 			
@@ -113,13 +118,19 @@ public class AdminHandler {
 	
 	//查看管理员
 	@RequestMapping(value = "/showAdmin",method = RequestMethod.GET)
-	public String showAdmin(String username,HttpServletRequest request){
+	public String showAdmin(HttpSession session){
 		
-		Admin a = adminService.selectByPrimaryKey(username);
+		String uname = (String) session.getAttribute("username");
 		
-		request.setAttribute("madmin", a);
+		System.out.println(uname);
 		
-		return "redirect:/ShowAdmin.jsp";
+		Admin a = adminService.selectByPrimaryKey(uname);
+		
+		System.out.println(a);
+		
+		session.setAttribute("admin", a);
+		
+		return  "redirect:/ShowAdmin.jsp";
 		
 	}
 	

@@ -25,7 +25,7 @@
 
 		<h1 align="center">图书管理系统----管理员登录</h1>
 		<hr width="1000px">
-		<form action="login" class="form-horizontal" method="get">
+		<form action="login" class="form-horizontal" method="post">
 
 			<!-- 用户名 -->
 			<div class="form-group">
@@ -38,6 +38,7 @@
 
 			<!-- 密码 -->
 			<div class="form-group">
+			
 				<label for="password" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 				<div class="col-sm-4">
 					<input type="password" class="form-control" id="password"

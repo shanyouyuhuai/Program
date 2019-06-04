@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//Dth HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dth">
 <html>
 <head>
@@ -17,51 +17,6 @@
 <title>查看管理员信息</title>
 
 <script type="text/javascript">
-	window.onload = function() {
-
-		var opt = {
-
-			method : "POST",
-			url : "showAdmin",
-			params : "action=ShowAdmin",
-			type : "json",
-			success : function(data) {
-
-				var admin = data;
-
-				var id = document.getElementById("id");
-
-				id.innerHTML = admin.id;
-				
-				
-
-				var name = document.getElementById("name");
-
-				name.innerHTML = admin.name;
-				
-				
-				var phone = document.getElementById("phone");
-
-				phone.innerHTML = admin.phone;
-				
-
-				var account = document.getElementById("username");
-
-				account.innerHTML = admin.username;
-				
-
-				var password = document.getElementById("password");
-
-				password.value = admin.password;
-				
-
-				
-			}
-		};
-
-		ajax(opt);
-
-	};
 
 	$(function() {
 
@@ -85,41 +40,40 @@
 	});
 </script>
 </head>
-<body background="image/1.jpg">
-	
-	<div class="container">
-		<h1 align="center">查看管理员</h1>
-		<br><br>
-		
-		<table class="table table-bordered table-hover table-striped">
+<body align="center" background="image/1.jpg"">
+		<caption>
+			<font size="7" face="宋体">查看管理员信息</font>
+		</caption>
+		<h1 class="text-center text-danger"><span class="glyphicon glyphicon-user"></span></h1>
+
+
+		<table  border="1" align="center" width="500px"
+			height="300px" cellspacing="0">
 			<tr align="center">
 				<th>编号</th>
-				<th id="id"></th>
+				<th>${admin.id}</th>
 			</tr>
 			
 			<tr align="center">
 				<th>姓名</th>
-				<th id="name"></th>
+				<th>${admin.name}</th>
 			</tr>
 			
 			<tr align="center">
 				<th>手机</th>
-				<th id="phone"></th>
+				<th>${admin.phone}</th>
 			</tr>
+			
 			
 			<tr align="center">
 				<th>账号</th>
-				<th id="username"></th>
+				<th>${admin.username}</th>
 			</tr>
-			
 			<tr align="center">
 				<th>密码</th>
-				<th><input type="password" id="password" disabled="disabled" /></th>
+				<th><input type="password" value="${admin.password}" disabled="disabled"/></th>
 			</tr>
 			
 		</table>
-	
-	</div>
-	
 </body>
 </html>
