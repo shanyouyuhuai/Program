@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.oracle.web.bean.Book;
 import com.oracle.web.bean.Fenlei;
 import com.oracle.web.bean.SubBook;
+import com.oracle.web.bean.pageBean;
 import com.oracle.web.service.BookService;
 import com.oracle.web.service.FenleiService;
 
@@ -28,15 +29,15 @@ public class BookHandler {
 	@Autowired
 	private FenleiService fenleiservice;
 	
-	@RequestMapping(value="books",method=RequestMethod.GET)
-	public String books(HttpServletRequest request){
-		
-		List<Book> list = bookservice.list();
-	
-		request.setAttribute("mlist", list);
-		
-		return "ShowBooks";
-	}
+//	@RequestMapping(value="books",method=RequestMethod.GET)
+//	public String books(HttpServletRequest request){
+//		
+//		List<Book> list = bookservice.list();
+//	
+//		request.setAttribute("mlist", list);
+//		
+//		return "ShowBooks";
+//	}
 	
 	@RequestMapping(value="/addUI",method=RequestMethod.GET)
 	
@@ -93,5 +94,24 @@ public class BookHandler {
 		bookservice.update(book);
 		
 		return "redirect:/books";
+	}
+	
+	@RequestMapping(value="/books",method=RequestMethod.GET)
+	public String selectfy(Integer pageNow,HttpServletRequest req){
+		
+		if(pageNow==null){
+			
+			pageNow=1;
+		}
+		pageBean<SubBook> pb=this.bookservice.showAllByPage(pageNow);
+		
+		req.setAttribute("pb", pb);
+		
+		System.out.println(pb);
+		
+		return "ShowBooks";
+		
+	
+	
 	}
 }

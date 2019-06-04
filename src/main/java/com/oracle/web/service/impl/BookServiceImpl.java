@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.oracle.mapper.BookMapper;
 import com.oracle.web.bean.Book;
 import com.oracle.web.bean.SubBook;
+import com.oracle.web.bean.pageBean;
 import com.oracle.web.service.BookService;
 
 @Service
@@ -53,9 +56,44 @@ public class BookServiceImpl implements BookService {
 
 
 	@Override
+	@Transactional
 	public Book queryone(Integer bid) {
 		// TODO Auto-generated method stub
 		return this.bookMapper.selectByPrimaryKey(bid);
+	}
+
+
+	@Override
+	@Transactional
+	public pageBean<SubBook> showAllByPage(Integer pageNow) {
+		// TODO Auto-generated method stub
+		
+		pageBean<SubBook> pb =new pageBean<SubBook>();
+		
+		//当前页数据
+		
+		PageHelper.startPage(pageNow,5);
+		
+		// 已经是分页好的数据
+		
+		List<SubBook> list= this.bookMapper.showAllByPage();
+		
+		pb.setBeanList(list);
+		
+		// 总记录数
+		
+		PageInfo<SubBook> pl= new PageInfo<SubBook>(list);
+		
+		pb.setCounts((int) pl.getTotal());
+		// 当前页 
+		
+		pb.setPageNow(pl.getPageNum());
+		
+		// 每页显示的条数 
+		
+		pb.setPageSize(pl.getPageSize());
+		
+		return pb;
 	}
 
 }

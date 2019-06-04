@@ -61,4 +61,14 @@
     select bid, fname, bname, price, chubanshe, zhuangtai, jieshuren, f_id
     from book
   </select>
+  
+  <select id="selectCount" resultType="java.lang.Integer">
+  
+  SELECT COUNT(*) FROM book
+  
+  </select>
+  <select id="showAllByPage" resultMap="SubBookResultMap">
+  
+  select * from book,fenlei where book.f_id=fenlei.f_id order by book.bid desc
+  </select>
 </mapper>

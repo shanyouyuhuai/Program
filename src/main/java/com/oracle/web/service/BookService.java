@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oracle.web.bean.Book;
 import com.oracle.web.bean.SubBook;
+import com.oracle.web.bean.pageBean;
 
 public interface BookService {
 
@@ -16,6 +17,8 @@ public interface BookService {
 	void update(Book book);
 
 	Book queryone(Integer bid);
+
+	pageBean<SubBook> showAllByPage(Integer pageNow);
 
 	
 }

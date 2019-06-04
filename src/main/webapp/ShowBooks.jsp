@@ -321,7 +321,7 @@ $(".deleteId").click(function(){
 			<td>删除</td>
 			<td>修改</td>
 		</tr>
-		<c:forEach items="${mlist }" var="q" varStatus="s">
+		<c:forEach items="${pb.beanList }" var="q" varStatus="s">
 			<tr align="center">
 				<%-- <td><input type="checkbox" name="ids" value="${q.bid }" /></td> --%>
 				<td>${s.index+1 }</td>
@@ -345,12 +345,11 @@ $(".deleteId").click(function(){
 	<center>
 		<ul class="pagination">
 			第${pb.pageNow }页/共${pb.pages }页 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<li><a href="BookServlet?action=showBookByPage&pageNow=1">首页</a></li>
+			<li><a href="books?pageNow=1">首页</a></li>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:if test="${pb.pageNow>1 }">
 				<li><a
-					href="BookServlet?action=ShowBookpage
-		&pageNow=${pb.pageNow-1 }">上一页</a></li>
+					href="books?pageNow=${pb.pageNow-1 }">上一页</a></li>
 			</c:if>
 			<!-- 分两种情况		 
 		   1.如果页数小于10
@@ -381,7 +380,7 @@ $(".deleteId").click(function(){
 						<li class="active"><span>${i }</span></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="BookServlet?action=ShowBookpage&pageNow=${i }">${i }</a></li>
+						<li><a href="books?pageNow=${i }">${i }</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -389,11 +388,11 @@ $(".deleteId").click(function(){
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:if test="${pb.pageNow<pb.pages }">
 				<li><a
-					href="BookServlet?action=ShowBookpage&pageNow=${pb.pageNow+1 }">下一页</a></li>
+					href="books?pageNow=${pb.pageNow+1 }">下一页</a></li>
 			</c:if>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<li><a
-				href="BookServlet?action=ShowBookpage&pageNow=${pb.pages }">尾页</a></li>
+				href="books?pageNow=${pb.pages }">尾页</a></li>
 		</ul>
 	</center>
 	<p>

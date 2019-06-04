@@ -17,4 +17,8 @@ public interface BookMapper {
 
     int updateByPrimaryKey(Book record);
     
+    int selectCount();
+
+	List<SubBook> showAllByPage();
+    
 }
