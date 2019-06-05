@@ -10,7 +10,7 @@ public interface AdminService {
 
 	Admin queryOne(String username);
 
-	int change(String password);
+	int change(String uname, String password);
 
 	Admin selectByPrimaryKey(String uname);
 

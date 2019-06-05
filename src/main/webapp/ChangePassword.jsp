@@ -37,8 +37,8 @@
 			<div class="form-group">
 				<label for="password" class="col-sm-4 control-label">新密码</label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="newPassword"
-						name="newPassword" />
+					<input type="password" class="form-control" id="password"
+						name="password" />
 				</div>	
 			</div>
 			

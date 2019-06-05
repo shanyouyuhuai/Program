@@ -75,9 +75,18 @@ public class AdminHandler {
 	//修改密码
 	
 		@RequestMapping(value = "/changePassword",method = RequestMethod.POST)
-		public String changePassword(String password){
+		public String changePassword(HttpSession session,HttpServletRequest req){
 			
-			int i = adminService.change(password);
+			String uname = (String) session.getAttribute("username");
+			
+			String password = (String) session.getAttribute("password");
+			
+			System.out.println(password);
+			
+			int i = adminService.change(uname,password);
+			
+			System.out.println(i);
+			
 			
 			if(i > 0){
 				
@@ -122,11 +131,7 @@ public class AdminHandler {
 		
 		String uname = (String) session.getAttribute("username");
 		
-		System.out.println(uname);
-		
 		Admin a = adminService.selectByPrimaryKey(uname);
-		
-		System.out.println(a);
 		
 		session.setAttribute("admin", a);
 		
@@ -134,19 +139,15 @@ public class AdminHandler {
 		
 	}
 	
-	
-	//退出登录
-	@RequestMapping(value = "_parent")
-	public String exit(HttpServletResponse resp,HttpSession session) throws IOException{
+	@RequestMapping(value="/exit")
+	public String exit(HttpSession session,HttpServletResponse resp){
 		
 		//1.清空session
 		session.invalidate();
 		
 		//2.跳转到登录界面
 		
-		resp.sendRedirect("Login.jsp");
-		
-		return  "redirect:/Login.jsp";
+		return "redirect:/Login.jsp";
 		
 	}
 	

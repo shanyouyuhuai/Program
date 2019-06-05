@@ -37,9 +37,9 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	@Transactional
-	public int change(String password) {
+	public int change(String uname,String newpassword) {
 		// TODO Auto-generated method stub
-		return this.adminMapper.change(password);
+		return this.adminMapper.change(uname,newpassword);
 	}
 
 	@Override

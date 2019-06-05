@@ -153,13 +153,16 @@ a {
 				</ul>
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-flag"></span><a
-						href="ChangePassword.jsp" target="right"><input type="button"
+						href="changePassword" target="right"><input type="button"
 							value="修改密码" id="btn9" /></a></li>
 				</ul>
 				<ul align="center">
-					<li><span class="ui-icon ui-icon-power"></span><a
-						href="AdminServlet?action=exit" target="_parent"><input
-							type="button" value="退出登录" id="btn10" /></a></li>
+					<li>
+						<span class="ui-icon ui-icon-power"></span>
+						<a href="exit" target="_parent">
+							<input type="button" value="退出登录" id="btn10" />
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
