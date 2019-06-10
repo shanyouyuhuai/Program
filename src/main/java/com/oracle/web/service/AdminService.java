@@ -10,9 +10,13 @@ public interface AdminService {
 
 	Admin queryOne(String username);
 
-	int change(String uname, String password);
-
 	Admin selectByPrimaryKey(String uname);
+
+	Admin queryByPassword(Admin admin);
+
+	Admin changePassword(String username, String password);
+
+	
 
 	
 

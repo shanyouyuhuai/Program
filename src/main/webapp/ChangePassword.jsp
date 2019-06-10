@@ -14,47 +14,158 @@
 <script type="text/javascript" src="js/ajax.js"></script>
 <title>修改密码</title>
 <script type="text/javascript">
-	
+	var flag;
+
+	function queryByPassword() {
+
+		var password = document.changepassword.password;
+
+		var pwMsg = document.getElementById("pwMsg");
+
+		ajax({
+
+			method : "GET",
+			url : "adminHandler",
+			params : "queryByPassword&password=" + password.value,
+			type : "password",
+			success : function(data) {
+
+				if (data == "1") {//找到用户名
+
+					pwMsg.style.color = "green";
+
+					pwMsg.innerHTML = "原密码输入正确!";
+
+					flag = true;
+
+				} else {//没找到用户名
+
+					pwMsg.style.color = "red";
+
+					pwMsg.innerHTML = "原密码输入错误，请重新输入!";
+
+					password.focus();
+
+					flag = false;
+
+				}
+
+			}
+
+		});
+
+	}
+
+	//校验新密码
+	function queryBynewPassword() {
+
+		var reg = /^\w{6,}$/;
+
+		var newpassword = document.changepassword.newpassword;
+
+		var npwMsg = document.getElementById("npwMsg");
+
+		var password = document.changepassword.password;
+
+		if (!reg.test(newpassword.value)) {//格式不匹配
+
+			npwMsg.style.color = "red";
+
+			npwMsg.innerHTML = "新密码必须是6位以上的数字，字母，或者_!";
+
+			return false;
+
+		}
+
+		if (password.value == newpassword.value) {
+
+			npwMsg.style.color = "red";
+
+			npwMsg.innerHTML = "新密码不能和原密码一样";
+
+			return false;
+
+		}
+
+		npwMsg.style.color = "green";
+
+		npwMsg.innerHTML = "新密码可用!";
+
+		return true;
+
+	}
+
+	function queryByrePassword() {
+
+		var newpassword=document.changepassword.newpassword;
+		
+		var repassword=document.changepassword.repassword;
+		
+		var rpwMsg=document.getElementById("rpwMsg");
+		
+		if(repassword.value==newpassword.value){
+			
+			rpwMsg.style.color="green";
+			
+			rpwMsg.innerHTML="两次密码一致";
+			
+			flag=true;
+		}else{
+			
+			rpwMsg.style.color="red";
+			
+			rpwMsg.innerHTML="抱歉两次密码不一致！";
+			
+			flag=false;
+			
+		}
+
+	}
+
+	function test() {
+
+		return flag && queryBynewPassword() && queryByrePassword();
+
+	}
 </script>
 </head>
 <body background="image/1.jpg">
 	<div class="container">
 		<h1 align="center">修改密码</h1>
 		<hr width="1000px">
-		<form action="changePassword" class="form-horizontal" method="post">
+		<form name="changepassword" action="changePassword" class="form-horizontal" method="post" onsubmit="return rest()">
 		
 		
 			<div class="form-group">
 				<label for="password" class="col-sm-4 control-label">原密码</label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password"
-						name="password" />
+					<input name="password" type="password" onblur="queryByPassword()" class="form-control" id="password"/>
+					<span id="pwMsg"></span>
 				</div>	
 			</div>
-			
 			
 			
 			<div class="form-group">
-				<label for="password" class="col-sm-4 control-label">新密码</label>
+				<label for="newpassword" class="col-sm-4 control-label">新密码</label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password"
-						name="password" />
+					<input type="password" name="newpassword" class="form-control" id="newpassword" onblur="queryBynewPassword()"/>
+					<span id="npwMsg"></span>
 				</div>	
 			</div>
-			
-			
 			
 			<div class="form-group">
 				<label for="rePassword" class="col-sm-4 control-label">确认密码</label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="rePassword"
-						name="rePassword" />
+					<input type="password" name="rePassword" class="form-control" id="rePassword" onblur="queryByrePassword()"/>
+					<span id="rpwMsg"></span>
 				</div>	
 			</div>
 			
 			<div class="form-group">
-				<div class="col-sm-offset-5 col-sm-4">
+				<div class="col-sm-offset-4 col-sm-4">
 					<button type="submit" class="btn btn-info">点击修改</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="reset" class="btn btn-info">重新填写</button>
 				</div>
 			</div>
 			

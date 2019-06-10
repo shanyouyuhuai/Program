@@ -51,8 +51,6 @@ public class AdminHandler {
 		
 		session.setAttribute("username", username);
 		
-		System.out.println(username);
-		
 		Admin admin1 = adminService.login(admin.getUsername());
 		
 		if(admin1 == null){
@@ -71,34 +69,71 @@ public class AdminHandler {
 		
 	}
 	
-	
-	//修改密码
-	
-		@RequestMapping(value = "/changePassword",method = RequestMethod.POST)
-		public String changePassword(HttpSession session,HttpServletRequest req){
+	//验证密码
+	@RequestMapping(value = "/queryByPassword")
+	@ResponseBody
+	public String queryByPassword(HttpServletResponse response,HttpServletRequest request,HttpSession session) throws IOException{
+		
+		response.setContentType("text/html;chatset=utf-8");
+		
+		String username = (String) session.getAttribute("username");
+		
+		String password = (String) session.getAttribute("password");
+		
+		Admin admin = new Admin();
+		
+		admin.setUsername(username);
+		
+		admin.setPassword(password);
+		
+		Admin a = adminService.queryByPassword(admin);
+		
+        if(a != null){
 			
-			String uname = (String) session.getAttribute("username");
+			response.getWriter().write("{\"valid\":\"false\"}");
 			
-			String password = (String) session.getAttribute("password");
+		}else{
 			
-			System.out.println(password);
-			
-			int i = adminService.change(uname,password);
-			
-			System.out.println(i);
-			
-			
-			if(i > 0){
-				
-				return "redirect:/ShowAdmin.jsp";
-				
-			}else{
-				
-				return "redirect:/ChangePassword.jsp";
-				
-			}
+			response.getWriter().write("{\"valid\":\"true\"}");//不存在
 			
 		}
+		
+		return NONE;
+		
+	} 
+	
+	
+	//修改密码
+	@RequestMapping(value="/changePassword",method = RequestMethod.GET)
+	public String changePassword(HttpSession session,HttpServletRequest request){
+		
+		String username = (String) session.getAttribute("username");
+		
+		System.out.println(username);
+		
+		String newpassword = request.getParameter("newpassword");
+		
+		Admin admin = new Admin();
+		
+		admin.setUsername(username);
+		
+		admin.setPassword(newpassword);
+		
+		Admin a = adminService.changePassword(admin.getUsername(),admin.getPassword());
+		
+		if(a != null){
+			
+			return  "redirect:/Login.jsp";
+			
+		}else{
+			
+			return  "redirect:/ChangePassword.jsp";
+			
+		}
+		
+		
+		
+	}	
 	
 	
 	//验证用户名
@@ -145,8 +180,7 @@ public class AdminHandler {
 		//1.清空session
 		session.invalidate();
 		
-		//2.跳转到登录界面
-		
+		//2.跳转到登录界面		
 		return "redirect:/Login.jsp";
 		
 	}

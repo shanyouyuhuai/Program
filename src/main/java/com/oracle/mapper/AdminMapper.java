@@ -24,9 +24,14 @@ public interface AdminMapper {
 
 	Admin queryOne(String username);
 
-	int change(String uname, String newpassword);
-
 	Admin selectByPrimaryKey(String uname);
+
+	Admin queryByPassword(Admin admin);
+
+	Admin changePassword(String username, String password);
+
+	
+
 
 	
 

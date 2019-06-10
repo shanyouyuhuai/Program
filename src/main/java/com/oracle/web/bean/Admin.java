@@ -4,10 +4,6 @@ public class Admin {
     
     private Integer id;
 
-    
-    private String touxiang;
-
-    
     private String name;
 
     
@@ -20,10 +16,9 @@ public class Admin {
     private String password;
 
     
-    public Admin(Integer id, String touxiang, String name, String phone, String username, String password) {
+    public Admin(Integer id, String name, String phone, String username, String password) {
 		super();
 		this.id = id;
-		this.touxiang = touxiang;
 		this.name = name;
 		this.phone = phone;
 		this.username = username;
@@ -44,16 +39,6 @@ public class Admin {
     
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    
-    public String getTouxiang() {
-        return touxiang;
-    }
-
-    
-    public void setTouxiang(String touxiang) {
-        this.touxiang = touxiang == null ? null : touxiang.trim();
     }
 
     
@@ -99,9 +84,12 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", touxiang=" + touxiang + ", name=" + name + ", phone=" + phone + ", username="
-				+ username + ", password=" + password + "]";
+		return "Admin [id=" + id + ", name=" + name + ", phone=" + phone + ", username=" + username + ", password="
+				+ password + "]";
 	}
+
+
+	
     
     
 }
