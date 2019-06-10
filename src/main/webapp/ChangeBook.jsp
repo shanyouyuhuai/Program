@@ -5,6 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--移动设备优先 -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<!--导入核心css文件 -->
+<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+
+<script type="text/javascript"src="bootstrap/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+
 <title>修改图书</title>
 </head>
 <body  background="image/14.jpg">

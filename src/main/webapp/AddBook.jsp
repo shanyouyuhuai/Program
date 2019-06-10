@@ -4,27 +4,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 1.要使用Bootstrap的话，必须是html5文档-->
-<meta charset="UTF-8">
-<!-- 2.移动设备优先 -->
-<mate name="viewport" content="width=device-width, initial-scale=1">
-<!-- 3.导入核心的css文件 -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css" />
-<!-- 4.需要引入jQuery文件 --> <script type="text/javascript"src="bootstrap/js/jQuery.js"></script> 
-<!-- 5.引入Bootstrap的核心JS文件 --> <scripttype="text/javascript" src="bootstrap/js/bootstrap.js"></script> <!-- <style type="text/css">
-.container {
-	border: 1px solid aqua;
-	background-color: lightpink;
-}
 
-.container-fluid {
-	border: 1px solid green;
-}
-</style> -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!--移动设备优先 -->
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+<!--导入核心css文件 -->
+
+<script type="text/javascript" src="bootstrap/js/jquery.js"></script>
+
+<script type="text/javascript"src="bootstrap/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <title>添加图书</title>
 <script type="text/javascript" src="js/ajax.js"></script>
+
  <script type="text/javascript" src="js/jquery.js"></script>
+ 
   <script type="text/javascript">
 		var flag;
 
