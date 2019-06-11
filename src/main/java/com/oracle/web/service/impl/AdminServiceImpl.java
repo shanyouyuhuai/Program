@@ -49,12 +49,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Admin changePassword(String username, String password) {
+	public Admin changePassword(String uname, String newpassword) {
 		// TODO Auto-generated method stub
-		return this.adminMapper.changePassword(username,password);
+		return this.adminMapper.changePassword(uname,newpassword);
 	}
 
-	
-	
 
 }

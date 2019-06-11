@@ -3,6 +3,8 @@ package com.oracle.mapper;
 import com.oracle.web.bean.Admin;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface AdminMapper {
     
 //    int deleteByPrimaryKey(Integer id);
@@ -28,7 +30,10 @@ public interface AdminMapper {
 
 	Admin queryByPassword(Admin admin);
 
-	Admin changePassword(String username, String password);
+	Admin changePassword(@Param("username") String uname, @Param("password") String newpassword);
+
+	//Admin changePassword(@RequestParam("username") String username,@RequestParam("password") String password);
+
 
 	
 

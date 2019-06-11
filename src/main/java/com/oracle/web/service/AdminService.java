@@ -14,7 +14,9 @@ public interface AdminService {
 
 	Admin queryByPassword(Admin admin);
 
-	Admin changePassword(String username, String password);
+	Admin changePassword(String uname, String newpassword);
+
+
 
 	
 

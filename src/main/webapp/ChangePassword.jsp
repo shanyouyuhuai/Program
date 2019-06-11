@@ -24,13 +24,13 @@
 
 		ajax({
 
-			method : "GET",
-			url : "adminHandler",
-			params : "queryByPassword&password=" + password.value,
-			type : "password",
+			method : "POST",
+			url : "queryByPassword",
+			params : "password=" + password.value,
+			type : "text",
 			success : function(data) {
 
-				if (data == "1") {//找到用户名
+				if (data !=null) {//找到用户名
 
 					pwMsg.style.color = "green";
 
@@ -58,10 +58,12 @@
 
 	//校验新密码
 	function queryBynewPassword() {
-
-		var reg = /^\w{6,}$/;
-
+		
+		var password = document.changepassword.password;
+		
 		var newpassword = document.changepassword.newpassword;
+		
+		var reg = /^(\w|\w){6,15}$/;
 
 		var npwMsg = document.getElementById("npwMsg");
 
@@ -94,6 +96,8 @@
 		return true;
 
 	}
+	
+	//确认密码
 
 	function queryByrePassword() {
 

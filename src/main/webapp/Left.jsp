@@ -153,7 +153,7 @@ a {
 				</ul>
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-flag"></span><a
-						href="changePassword" target="right"><input type="button"
+						href="ChangePassword.jsp" target="right"><input type="button"
 							value="修改密码" id="btn9" /></a></li>
 				</ul>
 				<ul align="center">

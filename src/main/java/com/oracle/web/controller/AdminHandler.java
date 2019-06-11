@@ -47,7 +47,8 @@ public class AdminHandler {
 	//登录
 	
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
-	public String login(@RequestParam("username") String username,Admin admin,HttpServletRequest req,HttpSession session){
+	public String login(@RequestParam("username") String username,@RequestParam("password") String password,
+			Admin admin,HttpServletRequest req,HttpSession session){
 		
 		session.setAttribute("username", username);
 		
@@ -72,13 +73,14 @@ public class AdminHandler {
 	//验证密码
 	@RequestMapping(value = "/queryByPassword")
 	@ResponseBody
-	public String queryByPassword(HttpServletResponse response,HttpServletRequest request,HttpSession session) throws IOException{
+	public void queryByPassword(@RequestParam("password") String password,HttpServletResponse response,
+			HttpServletRequest request,HttpSession session) throws IOException{
 		
 		response.setContentType("text/html;chatset=utf-8");
 		
 		String username = (String) session.getAttribute("username");
 		
-		String password = (String) session.getAttribute("password");
+		session.getAttribute("password");
 		
 		Admin admin = new Admin();
 		
@@ -88,52 +90,27 @@ public class AdminHandler {
 		
 		Admin a = adminService.queryByPassword(admin);
 		
-        if(a != null){
-			
-			response.getWriter().write("{\"valid\":\"false\"}");
-			
-		}else{
-			
-			response.getWriter().write("{\"valid\":\"true\"}");//不存在
-			
-		}
-		
-		return NONE;
+		response.getWriter().write(String.valueOf(a));
 		
 	} 
 	
 	
 	//修改密码
-	@RequestMapping(value="/changePassword",method = RequestMethod.GET)
-	public String changePassword(HttpSession session,HttpServletRequest request){
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePassword(@RequestParam("password") String password,
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		
-		String username = (String) session.getAttribute("username");
+
+	    String uname=(String) session.getAttribute("username");
 		
-		System.out.println(username);
-		
-		String newpassword = request.getParameter("newpassword");
-		
-		Admin admin = new Admin();
-		
-		admin.setUsername(username);
-		
-		admin.setPassword(newpassword);
-		
-		Admin a = adminService.changePassword(admin.getUsername(),admin.getPassword());
-		
-		if(a != null){
+	    String newpassword=request.getParameter("newpassword");
+	    
+	    Admin a=adminService.changePassword(uname,newpassword);
 			
-			return  "redirect:/Login.jsp";
-			
-		}else{
-			
-			return  "redirect:/ChangePassword.jsp";
-			
-		}
+	    return  "ShowAdmin";
+
+	}
 		
-		
-		
-	}	
 	
 	
 	//验证用户名

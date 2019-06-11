@@ -31,55 +31,54 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Integer getId() {
-        return id;
-    }
+		return id;
+	}
 
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    
-    public String getName() {
-        return name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
 
-   
-    public String getPhone() {
-        return phone;
-    }
+	public String getName() {
+		return name;
+	}
 
-    
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
 
-    
-    public String getUsername() {
-        return username;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
 
-    
-    public String getPassword() {
-        return password;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 
 	@Override
