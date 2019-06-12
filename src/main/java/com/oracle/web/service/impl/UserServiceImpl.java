@@ -94,15 +94,25 @@ public User queryOneUser(Integer id) {
 }
 
 @Override
+@Transactional
 public void update(User user) {
 	// TODO Auto-generated method stub
 	this.userMapper.updateByPrimaryKey(user);
 }
 
 @Override
+@Transactional
 public List<User> showUserByIds(String[] arr) {
 	// TODO Auto-generated method stub
 	return userMapper.showUserById(arr);
+}
+
+@Override
+@Transactional
+public List<User> list2() {
+	// TODO Auto-generated method stub
+	
+	return this.userMapper.selectall();
 }
 
 

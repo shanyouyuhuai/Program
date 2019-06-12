@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 
-<link rel="stylesheet" href="tubiao/iconfont.css">
+<link rel="stylesheet" href="icont/iconfont.css">
 
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 
@@ -32,10 +32,12 @@ $(function() {
 	});
 });
 </script>
+
    <script>
    
-		window.onload=function(){
-var selectAll=document.getElementById("selectAll");
+window.onload=function(){
+	
+ var selectAll=document.getElementById("selectAll");
 			
 			selectAll.onclick=function(){
 				
@@ -125,7 +127,7 @@ var selectAll=document.getElementById("selectAll");
 				}
 			}; */
 		
-		var  outAll=document.getElementById("outAll");
+		var outAll=document.getElementById("outAll");
 			outAll.onclick=function(){
 				var flag=confirm("你确定导出所有用户信息吗？");
 				if(flag){
@@ -138,6 +140,7 @@ var selectAll=document.getElementById("selectAll");
 			outSelect.onclick=function(){
 				
 				var chek=document.getElementsByName("ids");
+				
 				var flag = false;
 
 				for (i = 0; i < chek.length; i++) {
@@ -169,7 +172,7 @@ var selectAll=document.getElementById("selectAll");
 					if (flag) {//确定
 						//http://localhost:8080/SSM_bookmanger/outSelect/
 						
-						window.location.href = "http://localhost/Program/outSelect/"+str;
+						window.location.href = "outSelect/"+str;
 
 					}
 				}
@@ -232,7 +235,7 @@ var selectAll=document.getElementById("selectAll");
 				<td>${s.phone }</td>
 				<td>${s.username }</td>
 				<td>${s.password }</td>
-				<td>${s.zhucetime }</td>
+				<td>${s.time }</td>
 				<td><a href="monster/${s.id }"
 						class="deleteId btn btn-danger">删除</a></td>
 				<td><a href="monster/${s.id}" class="btn btn-primary">修改</a></td>		

@@ -11,90 +11,93 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!--移动设备优先 -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
 <link rel="stylesheet" href="icont/iconfont.css">
 <!--导入核心css文件 -->
 <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
 <script type="text/javascript">
-$(function(){
-$(".deleteId").click(function(){
-	
-	var $url =this.href;
-	
-	$("#deleteForm").attr("action",$url);
-	
-	$("#deleteForm").submit();
-	
-	return false;
-   });
-});
+	$(function() {
+		$(".deleteId").click(function() {
+
+			var $url = this.href;
+
+			$("#deleteForm").attr("action", $url);
+
+			$("#deleteForm").submit();
+
+			return false;
+		});
+	});
 </script>
 
 <script type="text/javascript">
- 
-$(function(){
+	$(function() {
 
-	var selectAll = document.getElementById("selectAll");
+		var selectAll = document.getElementById("selectAll");
 
-	selectAll.onclick = function() {
+		selectAll.onclick = function() {
 
-		var check = document.getElementsByName("ids");
+			var check = document.getElementsByName("ids");
 
-		for (var i = 0; i < check.length; i++) {
-
-			check[i].checked = true;
-		}
-	};
-
-	var unselectAll = document.getElementById("unselectAll");
-
-	unselectAll.onclick = function() {
-
-		var check = document.getElementsByName("ids");
-
-		for (var i = 0; i < check.length; i++) {
-
-			check[i].checked = false;
-		}
-
-	};
-
-	var fanxuan = document.getElementById("fanxuan");
-
-	fanxuan.onclick = function() {
-
-		var check = document.getElementsByName("ids");
-
-		for (var i = 0; i < check.length; i++) {
-
-			if (check[i].checked == true) {
-
-				check[i].checked = false;
-
-			} else {
+			for (var i = 0; i < check.length; i++) {
 
 				check[i].checked = true;
 			}
+		};
 
-		}
+		var unselectAll = document.getElementById("unselectAll");
 
-	};
-	 
-	//导出所有用户信息
-	$(".OutAll").click(function(){
+		unselectAll.onclick = function() {
+
+			var check = document.getElementsByName("ids");
+
+			for (var i = 0; i < check.length; i++) {
+
+				check[i].checked = false;
+			}
+
+		};
+
+		var fanxuan = document.getElementById("fanxuan");
+
+		fanxuan.onclick = function() {
+
+			var check = document.getElementsByName("ids");
+
+			for (var i = 0; i < check.length; i++) {
+
+				if (check[i].checked == true) {
+
+					check[i].checked = false;
+
+				} else {
+
+					check[i].checked = true;
+				}
+
+			}
+
+		};
+
+		//导出所有用户信息
+		var outAll = document.getElementById("outAll");
+
+		outAll.onclick = function() {
+
+			var flage = confirm("您确定导出所有分类嘛？");
+
+			if (flage) {
+
+				window.location.href = "outall";
+			}
+		};
+
+		var outSelect = document.getElementById("outSelect");
 		
-		var flag = confirm("您确定要导出所有用户信息吗？");
-
-		if (flag) {//真的话执行
-
-			window.location.href = "http://localhost/manager/outAll";
-		}
-	});
-
-	//导出所选的用户信息
-	$(".OutSelect").click(function(){
-
+		outSelect.onclick = function(){
+			
 		var check = document.getElementsByName("ids");
 
 		//判断一下,他选了没有
@@ -141,96 +144,85 @@ $(function(){
 
 		if (queren == true) {
 
-			location.href = "http://localhost/manager/outSelect?ids="+ str;
+			location.href = "outSelect1/"+ str;
 
 		} else {
 
 			location.reload();
 		}
+		}
 	});
-	
-	 $(".deleteId").click(function(){
-		   
-		   var $url=this.href;
-		   
-		   //alert($url);
-		   
-		   $("#deleteForm").attr("action",$url);
-		   
-		   //提交表单
-		   $("#deleteForm").submit();
-		   
-		   return false;
-	   });
- });
 </script>
 </head>
 <body background="image/12.jpg">
+
+
+
+	<li class="dropdown"><a class="dropdown-toggle"
+		data-toggle="dropdown">高级搜索<span class="caret"></span></a>
+		<ul class="dropdown-menu dropdown-menu-right" role="menu">
+			<li>
+				<form action="books" class="form-horizontal" id="f1">
+
+					<!-- 隐藏域，用来传递action -->
+
+					<input type="hidden" name="action" value="findBookByWhere">
+
+					<div class="form-group">
+						<br> <label class="col-sm-4 control-label">选择分类： </label>
+						<div class="controls col-sm-6">
+							<select name="book.fenlei.name" class="form-control  input-sm"
+								id="fList">
+								<option value="0">----请选择----</option>
+								<c:forEach items="${updateList }" var="fenlei">
+									<option>${fenlei.name}</option>
+								</c:forEach>
+							</select><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4  control-label">书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
+						<div class="controls col-sm-6">
+							<input name="bname" type="text" class="form-control" /><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label"> 出&nbsp;版&nbsp;社:</label>
+						<div class="controls  col-sm-6">
+							<input name="chubanshe" type="text" class="form-control" /><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">借&nbsp;书&nbsp;人:</label>
+						<div class="controls  col-sm-6">
+							<input name="jieshuren" type="text" class="form-control" /><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-4">
+							状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
+						<div class="controls  col-sm-6">
+							<input name="zhuangtai" type="text" class="form-control" /><br>
+						</div>
+					</div>
+
+					<div class="control-group">
+
+						<div class="controls ss">
+							<button type="submit" class="btn btn-info ">
+								<span class="glyphicon glyphicon-search"></span> 开始搜索
+							</button>
+							<br> <br>
+						</div>
+					</div>
+
+				</form>
+			</li>
+
+		</ul>
+	</li>
 	
-	 <li class="dropdown">
-	 <a class="dropdown-toggle" data-toggle="dropdown">高级搜索<span class="caret"></span></a>
-				<ul class="dropdown-menu dropdown-menu-right" role="menu">
-					<li>
-						<form action="books" class="form-horizontal" id="f1">
-
-							<!-- 隐藏域，用来传递action -->
-
-							<input type="hidden" name="action" value="findBookByWhere">
-
-							<div class="form-group">
-								<br> <label class="col-sm-4 control-label">选择分类：
-								</label>
-								<div class="controls col-sm-6">
-									<select name="book.fenlei.name" class="form-control  input-sm"
-										id="fList">
-										<option value="0">----请选择----</option>
-										<c:forEach items="${updateList }" var="fenlei">
-											<option>${fenlei.name}</option>
-										</c:forEach>
-									</select><br>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4  control-label">书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-								<div class="controls col-sm-6">
-									<input name="bname" type="text" class="form-control" /><br>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label"> 出&nbsp;版&nbsp;社:</label>
-								<div class="controls  col-sm-6">
-									<input name="chubanshe" type="text" class="form-control" /><br>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">借&nbsp;书&nbsp;人:</label>
-								<div class="controls  col-sm-6">
-									<input name="jieshuren" type="text" class="form-control" /><br>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label class="control-label col-sm-4"> 状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</label>
-								<div class="controls  col-sm-6">
-									<input name="zhuangtai" type="text" class="form-control" /><br>
-								</div>
-							</div>
-
-							<div class="control-group">
-
-								<div class="controls ss">
-									<button type="submit" class="btn btn-info ">
-										<span class="glyphicon glyphicon-search"></span> 开始搜索
-									</button>
-									<br> <br>
-								</div>
-							</div>
-
-						</form>
-					</li>
-
-				</ul></li>
-
 
 	<table align="center" width="200px" height="20px" frame="void">
 		<caption align="top">
@@ -243,7 +235,7 @@ $(function(){
 	<table align="center" width="600px" height="200px" border="1px"
 		cellspacing="0" bordercolor="silver">
 		<tr align="center">
-			<!-- <td>选择</td> -->
+			<td>选择</td> 
 			<td>图书编号</td>
 			<td>分类名称</td>
 			<td>图书名称</td>
@@ -269,14 +261,28 @@ $(function(){
 				<td><a href="book/${q.bid }"><input type="submit"
 						value="修改" /></a></td>
 			</tr>
-		</c:forEach>
+		</c:forEach>	
 	</table>
+	<table align="center">
+
+		<tr align="center">
+
+			<td><button id="outAll" class="btn btn-info">导出全部</button>
+				<button id="outSelect" class="btn btn-info">导出选中</button>
+				<button id="selectAll" class="btn btn-info">全选</button>
+				<button id="unselectAll" class="btn btn-info">全不选</button>
+				<button id="fanxuan" class="btn btn-info">反选</button>
+	</td>
+		</tr>
+
+	</table>
+	
 	<form action="" method="post" id="deleteForm">
 		<input type="hidden" name="_method" value="DELETE">
 	</form>
-	<p>
+
 	<center>
-		<ul class="pagination">
+		<ul  class="pagination">
 			第${pb.pageNow }页/共${pb.pages }页 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<li><a href="books?pageNow=1">首页</a></li>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -325,18 +331,7 @@ $(function(){
 			<li><a href="books?pageNow=${pb.pages }">尾页</a></li>
 		</ul>
 	</center>
-	<p>
-	<div class="col col-sm-10" align="center">
 
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="AddBook.jsp">添加图书</a></li>
-			<li><a id="selectAll">全选</a></li>
-			<li><a id="unselectAll">全不选</a></li>
-			<li><a id="fanxuan">反选</a></li>
-
-			<li><a class="OutSelect">导出选中</a></li>
-			<li><a class="OutAll">导出全部</a></li>
-		</ul>
-	</div>
+</body>
 </body>
 </html>

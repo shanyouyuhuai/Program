@@ -71,4 +71,21 @@
   
   select * from book,fenlei where book.f_id=fenlei.f_id order by book.bid desc
   </select>
+  
+  <select id="querybooks" resultMap="BaseResultMap">
+  
+  select * from book where bid in
+  
+  <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+  
+  #{arr}
+  </foreach>
+  
+  </select>
+  
+  <select id="selectAll2" resultMap="BaseResultMap">
+  
+  select * from book
+  </select>
+  
 </mapper>

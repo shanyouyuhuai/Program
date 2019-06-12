@@ -20,5 +20,9 @@ public interface BookService {
 
 	pageBean<SubBook> showAllByPage(Integer pageNow);
 
+	List<Book> querybooks(String[] arr);
+	
+	List<Book>list2();
+
 	
 }

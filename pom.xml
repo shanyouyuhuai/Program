@@ -26,6 +26,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -128,11 +129,22 @@
 			<version>4.12</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.11</version>
-		</dependency>
+	  <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.10-FINAL</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+             <version>3.10-FINAL</version>
+        </dependency>
+       <dependency>
+          <groupId>org.apache.poi</groupId>
+          <artifactId>poi</artifactId>
+          <version>3.11</version>
+        </dependency>
+
 	</dependencies>
 
 	<!-- 配置插件 -->
