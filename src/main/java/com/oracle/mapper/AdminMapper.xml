@@ -48,14 +48,24 @@
 	
 
 	<!-- 修改密码 -->
-	<update id="change" parameterType="String">
-		UPDATE admin SET password = #{password} WHERE password = #{password}
-	</update>
+	<select id="changePassword" resultType="com.oracle.web.bean.Admin">
+		update admin set password=#{password,jdbcType=VARCHAR} where username=#{username,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- <update id="changePassword" parameterType="String">
+		update admin set password=#{password,jdbcType=VARCHAR} where username=#{username,jdbcType=VARCHAR}
+	</update> -->
 
 	<!-- 查看管理员 -->
- <select id="selectByPrimaryKey" parameterType="String" resultType="com.oracle.web.bean.Admin">
-     select id, name, phone, username, password FROM admin WHERE username=#{username,jdbcType=VARCHAR}
+ 	<select id="selectByPrimaryKey" parameterType="String" resultType="com.oracle.web.bean.Admin">
+     	select id, name, phone, username, password FROM admin WHERE username=#{username,jdbcType=VARCHAR}
     </select>
+    
+    
+    <!-- 验证密码 -->
+    <select id="queryByPassword" parameterType="Admin" resultMap="BaseResultMap">
+		select username,password from admin where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+	</select>
   
   
   
