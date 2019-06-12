@@ -75,10 +75,9 @@ a {
 		});
 
 	});
-</script>
+</script> 
 </head>
-<body>
-<body>
+<body background="image/1.jpg">
 	<h2 class="demoHeaders">Menu</h2>
 	<div id="accordion">
 		<h3>分类管理</h3>
@@ -130,12 +129,12 @@ a {
 				width="100px">
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-arrowreturn-1-e"></span><a
-						href="AddUsers.jsp" target="right"><input type="button"
+						href="addUser.jsp" target="right"><input type="button"
 							value="添加用户" id="btn6" /></a></li>
 				</ul>
 				<ul align="center">
 					<li><span class="ui-icon ui-icon-battery-3"></span><a
-						href="UserServlet?action=ShowUsers" target="right"><input
+						href="monsters" target="right"><input
 							type="button" value="查看用户" id="btn7" /></a></li>
 				</ul>
 			</div>
