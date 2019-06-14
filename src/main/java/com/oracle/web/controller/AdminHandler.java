@@ -1,5 +1,6 @@
 package com.oracle.web.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.web.bean.Admin;
 import com.oracle.web.service.AdminService;
@@ -27,22 +29,52 @@ public class AdminHandler {
 	private AdminService adminService;
 	
 	//注册
-	@RequestMapping(value = "/register",method = RequestMethod.POST)
-	public String register(Admin admin){
-		
-		int i = adminService.save(admin);
-		
-		if(i > 0){
-			
-			return "redirect:/Login.jsp";
-			
-		}else{
-			
-			return "redirect:/Register.jsp";
-			
-		}
-		
+	@RequestMapping(value = "/register")
+	public String register(String name, String phone, String username, String password,
+			@RequestParam("touxiang") MultipartFile filetx, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+
+
+		String str = request.getSession().getServletContext().getRealPath("/touxiang");
+
+
+		File file = new File(str + "\\" + filetx.getOriginalFilename());
+
+
+		filetx.transferTo(file);
+
+
+		String touxiang = str + "\\" + filetx.getOriginalFilename();
+
+
+		//System.out.println(touxiang);
+
+
+		Admin admin = new Admin(null, touxiang, name, phone, username, password);
+
+
+		adminService.save(admin);
+
+
+		return "redirect:/Login.jsp";
+
+
 	}
+//	public String register(Admin admin){
+//		
+//		int i = adminService.save(admin);
+//		
+//		if(i > 0){
+//			
+//			return "redirect:/Login.jsp";
+//			
+//		}else{
+//			
+//			return "redirect:/Register.jsp";
+//			
+//		}
+//		
+//	}
 	
 	//登录
 	
@@ -58,11 +90,15 @@ public class AdminHandler {
 			
 			return "redirect:/Login.jsp";
 			
-		}
-		
-		if(!admin1.getPassword().equals(admin.getPassword())){
+		}else if(!admin1.getPassword().equals(admin.getPassword())){
 			
 			return "redirect:/Login.jsp";
+			
+		}else{
+			
+			String str =admin1.getTouxiang().substring(admin1.getTouxiang().lastIndexOf("\\")+1);
+			
+			session.setAttribute("touxiang", str);
 			
 		}
 		
@@ -80,7 +116,9 @@ public class AdminHandler {
 		
 		String username = (String) session.getAttribute("username");
 		
-		session.getAttribute("password");
+		//session.getAttribute("password");
+		
+		session.setAttribute("password", password);
 		
 		Admin admin = new Admin();
 		

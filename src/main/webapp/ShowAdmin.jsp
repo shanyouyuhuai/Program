@@ -54,6 +54,10 @@
 				<th>${admin.id}</th>
 			</tr>
 			
+				<tr align="center">
+			    <th>头像</th>
+				<th><img src="touxiang/${sessionScope.touxiang }" style="width:60px;height:50px" class="img-circle img-responsive"/></th>
+			
 			<tr align="center">
 				<th>姓名</th>
 				<th>${admin.name}</th>

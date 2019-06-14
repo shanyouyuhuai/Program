@@ -32,7 +32,7 @@
 
 				if (data !=null) {//找到用户名
 
-					pwMsg.style.color = "green";
+					pwMsg.style.color = "chartreuse";
 
 					pwMsg.innerHTML = "原密码输入正确!";
 
@@ -89,7 +89,7 @@
 
 		}
 
-		npwMsg.style.color = "green";
+		npwMsg.style.color = "chartreuse";
 
 		npwMsg.innerHTML = "新密码可用!";
 
@@ -109,7 +109,7 @@
 		
 		if(repassword.value==newpassword.value){
 			
-			rpwMsg.style.color="green";
+			rpwMsg.style.color="chartreuse";
 			
 			rpwMsg.innerHTML="两次密码一致";
 			

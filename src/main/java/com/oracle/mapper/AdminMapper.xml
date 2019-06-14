@@ -8,6 +8,7 @@
       This element was generated on Wed May 08 12:26:45 CST 2019.
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="touxaing" jdbcType="VARCHAR" property="touxiang" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="username" jdbcType="VARCHAR" property="username" />
@@ -23,10 +24,10 @@
   <!-- 注册 -->
   <insert id="save" parameterType="com.oracle.web.bean.Admin">
     
-    insert into admin (id, name, 
+    insert into admin (id,touxiang, name, 
       phone, username, password
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER},#{touxiang,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
@@ -58,7 +59,7 @@
 
 	<!-- 查看管理员 -->
  	<select id="selectByPrimaryKey" parameterType="String" resultType="com.oracle.web.bean.Admin">
-     	select id, name, phone, username, password FROM admin WHERE username=#{username,jdbcType=VARCHAR}
+     	select id, touxiang, name, phone, username, password FROM admin WHERE username=#{username,jdbcType=VARCHAR}
     </select>
     
     
