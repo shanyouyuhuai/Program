@@ -19,7 +19,7 @@
 <title>注册</title>
 <script type="text/javascript">
 	$(function() {
-		$(".form-horizontal")
+		$(".form-horizontal") 
 				.bootstrapValidator(
 						{
 							feedbackIcons : {
