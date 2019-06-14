@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BookMapper {
    
-    int deleteByPrimaryKey(Integer bid);
+   // int deleteByPrimaryKey(Integer bid);
 
     int insert(Book record);
     
@@ -24,5 +24,7 @@ public interface BookMapper {
 	List<Book> querybooks(String[] arr);
 
 	List<Book> selectAll2();
+
+	int deleteByPrimaryKey(String[] arr);
     
 }

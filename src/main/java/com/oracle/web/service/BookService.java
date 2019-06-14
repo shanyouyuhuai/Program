@@ -12,7 +12,7 @@ public interface BookService {
 
 	List<Book> list();
 
-	void delete(Book book);
+	//void delete(Book book);
  
 	void update(Book book);
 
@@ -23,6 +23,8 @@ public interface BookService {
 	List<Book> querybooks(String[] arr);
 	
 	List<Book>list2();
+
+	void delete(String[] arr);
 
 	
 }

@@ -19,21 +19,6 @@
 
 <script type="text/javascript">
 	$(function() {
-		$(".deleteId").click(function() {
-
-			var $url = this.href;
-
-			$("#deleteForm").attr("action", $url);
-
-			$("#deleteForm").submit();
-
-			return false;
-		});
-	});
-</script>
-
-<script type="text/javascript">
-	$(function() {
 
 		var selectAll = document.getElementById("selectAll");
 
@@ -81,6 +66,18 @@
 
 		};
 
+		$(".deleteId").click(function() {
+
+			var $url = this.href;
+
+			$("#deleteForm").attr("action", $url);
+
+			$("#deleteForm").submit();
+
+			return false;
+
+		});
+
 		//导出所有用户信息
 		var outAll = document.getElementById("outAll");
 
@@ -95,68 +92,133 @@
 		};
 
 		var outSelect = document.getElementById("outSelect");
-		
-		outSelect.onclick = function(){
+
+		outSelect.onclick = function() {
+
+			var check = document.getElementsByName("ids");
+
+			//判断一下,他选了没有
+			var flag = false;
+
+			for (var i = 0; i < check.length; i++) {
+
+				if (check[i].checked == true) {
+
+					flag = true;
+
+					break;
+
+				}
+			}
+
+			if (flag == false) {
+
+				alert("请至少勾选一项进行导出！");
+
+				location.href = "books";
+
+				return;
+			}
+
+			//如果选择了
+
+			var str = "";
+
+			for (var i = 0; i < check.length; i++) {
+
+				if (check[i].checked == true) {
+
+					str = str + check[i].value + ",";
+
+				}
+			}
+
+			//去除最后一个逗号
+			str = str.slice(0, str.length - 1);
+
+			//发送给服务器
+			var queren = confirm("您确定要导出所勾选的用户吗？");
+
+			if (queren == true) {
+
+				location.href = "outSelect1/" + str;
+
+			} else {
+
+				location.reload();
+			}
+		}
+
+		var deleteBook = document.getElementById("deleteBook");
+
+		deleteBook.onclick = function() {
+
+			var check = document.getElementsByName("ids");
+
+			//判断一下,他选了没有
+			var flag = false;
+
+			for (var i = 0; i < check.length; i++) {
+
+				if (check[i].checked == true) {
+
+					flag = true;
+
+					break;
+
+				}
+			}
+
+			if (flag == false) {
+
+				alert("请至少勾选一项进行删除！");
+
+				location.href = "books";
+
+				return;
+			}
+
+			//如果选择了
+
+			var str = "";
+
+			for (var i = 0; i < check.length; i++) {
+
+				if (check[i].checked == true) {
+
+					str = str + check[i].value + ",";
+
+				}
+			}
+
+			//去除最后一个逗号
 			
-		var check = document.getElementsByName("ids");
+			str = str.slice(0, str.length - 1);
 
-		//判断一下,他选了没有
-		var flag = false;
+			//发送给服务器
+			var queren = confirm("您确定要删除这些图书吗？");
 
-		for (var i = 0; i < check.length; i++) {
+			if (queren == true) {
 
-			if (check[i].checked == true) {
+				var $url = "book/" + str;
+				
+				$("#deleteForm").attr("action", $url);
 
-				flag = true;
+				$("#deleteForm").submit();
 
-				break;
+				return false;
+				
+			} else {
 
+				location.reload();
 			}
-		}
-
-		if (flag == false) {
-
-			alert("请至少勾选一项进行导出！");
-
-			location.href = "books";
-
-			return;
-		}
-
-		//如果选择了
-
-		var str = "";
-
-		for (var i = 0; i < check.length; i++) {
-
-			if (check[i].checked == true) {
-
-				str = str + check[i].value + ",";
-
-			}
-		}
-
-		//去除最后一个逗号
-		str = str.slice(0, str.length - 1);
-
-		//发送给服务器
-		var queren = confirm("您确定要导出所勾选的用户吗？");
-
-		if (queren == true) {
-
-			location.href = "outSelect1/"+ str;
-
-		} else {
-
-			location.reload();
-		}
-		}
+		};
 	});
 </script>
+
+
 </head>
-<body background="image/12.jpg">
-
-
+<body background="image/1.jpg">
 
 	<li class="dropdown"><a class="dropdown-toggle"
 		data-toggle="dropdown">高级搜索<span class="caret"></span></a>
@@ -220,9 +282,7 @@
 				</form>
 			</li>
 
-		</ul>
-	</li>
-	
+		</ul></li>
 
 	<table align="center" width="200px" height="20px" frame="void">
 		<caption align="top">
@@ -235,7 +295,7 @@
 	<table align="center" width="600px" height="200px" border="1px"
 		cellspacing="0" bordercolor="silver">
 		<tr align="center">
-			<td>选择</td> 
+			<td>选择</td>
 			<td>图书编号</td>
 			<td>分类名称</td>
 			<td>图书名称</td>
@@ -243,7 +303,6 @@
 			<td>图书出版社</td>
 			<td>状态</td>
 			<td>借书人</td>
-			<td>删除</td>
 			<td>修改</td>
 		</tr>
 		<c:forEach items="${pb.beanList }" var="q" varStatus="s">
@@ -256,33 +315,33 @@
 				<td>${q.chubanshe}</td>
 				<td>${q.zhuangtai }</td>
 				<td>${q.jieshuren }</td>
-				<td><a href="book/${q.bid }" class="deleteId"><input
-						type="submit" value="删除" /></a></td>
 				<td><a href="book/${q.bid }"><input type="submit"
 						value="修改" /></a></td>
 			</tr>
-		</c:forEach>	
+		</c:forEach>
 	</table>
 	<table align="center">
-
 		<tr align="center">
 
-			<td><button id="outAll" class="btn btn-info">导出全部</button>
+			<td>
+
+				<button id="outAll" class="btn btn-info">导出全部</button>
 				<button id="outSelect" class="btn btn-info">导出选中</button>
 				<button id="selectAll" class="btn btn-info">全选</button>
 				<button id="unselectAll" class="btn btn-info">全不选</button>
+				<button id="deleteBook" class="btn btn-info">删除</button>
 				<button id="fanxuan" class="btn btn-info">反选</button>
-	</td>
+			</td>
 		</tr>
 
 	</table>
-	
+
 	<form action="" method="post" id="deleteForm">
 		<input type="hidden" name="_method" value="DELETE">
 	</form>
 
 	<center>
-		<ul  class="pagination">
+		<ul class="pagination">
 			第${pb.pageNow }页/共${pb.pages }页 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<li><a href="books?pageNow=1">首页</a></li>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

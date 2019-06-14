@@ -24,11 +24,12 @@
     <association property="fenlei" javaType="Fenlei" column="f_id" select="com.oracle.mapper.BookMapper.selectByPrimaryKey">
     </association>
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     
     delete from book
     where bid = #{bid,jdbcType=INTEGER}
-  </delete>
+  </delete> -->
+  
   <insert id="insert" parameterType="com.oracle.web.bean.Book">
     
     insert into book (bid, fname, bname, 
@@ -87,5 +88,16 @@
   
   select * from book
   </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    
+    delete from book where bid in
+    
+    <foreach item="arr" collection="array" index="no" open="(" separator="," close=")">
+    	#{arr}
+    </foreach>
+    
+  </delete>
+  
   
 </mapper>

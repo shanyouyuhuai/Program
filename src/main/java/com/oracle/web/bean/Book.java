@@ -4,7 +4,6 @@ public class Book {
  
     private Integer bid;
 
-    
     private String fname;
 
     private String bname;

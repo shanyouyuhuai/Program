@@ -83,19 +83,19 @@ public class BookHandler {
 		return "redirect:/books";
 	}
 	
-	@RequestMapping(value="/book/{bid}" ,method=RequestMethod.DELETE)
-	
-	public String delete(@PathVariable("bid") Integer bid){
-		
-		Book book =new Book();
-		
-		book.setBid(bid);
-		
-		bookservice.delete(book);
-		
-		return "redirect:/books";
-		
-	}
+//	@RequestMapping(value="/book/{bid}" ,method=RequestMethod.DELETE)
+//	
+//	public String delete(@PathVariable("bid") Integer bid){
+//		
+//		Book book =new Book();
+//		
+//		book.setBid(bid);
+//		
+//		bookservice.delete(book);
+//		
+//		return "redirect:/books";
+//		
+//	}
 	
 	@RequestMapping(value="/book/{bid}", method=RequestMethod.GET)
 	public String updateUI(@PathVariable("bid") Integer bid,HttpSession session){
@@ -468,6 +468,22 @@ public class BookHandler {
 		return null;
 
 	}
-
-
+	
+	@RequestMapping(value="/book/{bid}" ,method=RequestMethod.DELETE)
+    public String delete(@PathVariable(value="bid") String ids){
+		
+		String [] arr =ids.split(",");
+		
+		for(String string : arr){
+			
+			System.out.println(string);
+			
+		}
+		
+		bookservice.delete(arr);
+		
+		return "redirect:/books";
+		
+		
+	}
 }

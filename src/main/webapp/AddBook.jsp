@@ -110,53 +110,6 @@
 
 		};
 
-		window.onload = function() {
-
-			ajax({
-
-				method : "POST",
-
-				url : "FenleiServlet",
-
-				ansy : true,
-
-				params : "action=updateShowFenlei",
-
-				type : "xml",
-
-				success : function(data) {
-
-					var select = document.getElementById("fenleiList");
-
-					var names = data.getElementsByTagName("name");
-
-					for (var i = 0; i < names.length; i++) {
-
-						var name = names[i];
-
-						var opt = document.createElement("option");
-
-						var value;
-
-						if (window.addEventListener) {
-
-							value = name.textContent;
-
-						} else {
-
-							value = text;
-						}
-
-						opt.innerHTML = value;
-
-						opt.value = value;
-
-						select.appendChild(opt);
-					}
-				}
-			});
-		};
-
 		function addb() {
 
 			//alert(flag);
@@ -184,7 +137,7 @@
 		});
 	</script>
 </head>
-<body background="image/11.jpg">
+<body background="image/1.jpg">
 
 	<div class="container">
 		<div class="row">

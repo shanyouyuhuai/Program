@@ -17,8 +17,9 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 
 <title>修改图书</title>
+
 </head>
-<body  background="image/14.jpg">
+<body  background="image/1.jpg">
 
 <div class="container">
 		<h3 align="center">修改图书信息</h3>
@@ -29,12 +30,13 @@
 			<input type="hidden" name="_method" value="PUT"> 
 			<input type="hidden" name="bid" value="${book.bid }" />
 				
-				<ul class="nav">
-				<li><b>请选择您想要修改的分类:</b></li>
-				<li>
-				<select name="fId" class="form-control">
+			<li>
+			 <label>请选择分类:</label>
+				
+				<select name="fId" class="form-control" >
 				
 				<c:forEach items="${fList }" var="f">
+				
 				  <c:if test="${f.fId == book.fId }">
 				  
 				  <option value="${f.fId }" selected="selected">${f.fname }</option>
@@ -46,7 +48,7 @@
 				</c:forEach>
 				</select>
 				</li>
-				</ul>
+				
 				
 				<div class="form-group">
 				<label >分类名称</label>
