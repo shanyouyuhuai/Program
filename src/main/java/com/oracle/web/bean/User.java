@@ -11,7 +11,7 @@ public class User {
 
     private String password;
 
-    private String zhucetime;
+    private String time;
 
     public Integer getId() {
         return id;
@@ -53,18 +53,18 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getZhucetime() {
-        return zhucetime;
+    public String gettime() {
+        return time;
     }
 
-    public void setZhucetime(String zhucetime) {
-        this.zhucetime = zhucetime == null ? null : zhucetime.trim();
+    public void settime(String time) {
+        this.time = time == null ? null : time.trim();
     }
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", username=" + username + ", password="
-				+ password + ", zhucetime=" + zhucetime + "]";
+				+ password + ", zhucetime=" + time + "]";
 	}
     
 }

@@ -140,7 +140,7 @@ $(function() {
 					</div>
 					<div class="form-group">
 						<label>注&nbsp;&nbsp;册&nbsp;时&nbsp;&nbsp;&nbsp;间:</label> <input
-							type="date" name="zhucetime" class="form-control" />
+							type="date" name="time" class="form-control" />
 					</div>
 					
 					<div class="form-group">

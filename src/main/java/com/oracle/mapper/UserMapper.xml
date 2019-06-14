@@ -7,7 +7,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="zhucetime" jdbcType="VARCHAR" property="zhucetime" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
@@ -15,10 +15,10 @@
   </delete>
   <insert id="insert" parameterType="com.oracle.web.bean.User">
     insert into user (id, name, phone, 
-      username, password, zhucetime
+      username, password, time
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{zhucetime,jdbcType=VARCHAR}
+      #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.oracle.web.bean.User">
@@ -27,16 +27,16 @@
       phone = #{phone,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      zhucetime = #{zhucetime,jdbcType=VARCHAR}
+      time = #{time,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, name, phone, username, password, zhucetime
+    select id, name, phone, username, password, time
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, phone, username, password, zhucetime
+    select id, name, phone, username, password, time
     from user
   </select>
    <select id="selectCount" resultType="java.lang.Integer">
@@ -51,13 +51,22 @@
   <select id="sesectAllBypage" parameterType="int"  resultMap="BaseResultMap">
     select * from user  order by id desc 
   </select>
+
+<select id="selectall" resultMap="BaseResultMap">
+ 
+ select * from user
+ 
+</select>
   
-  <select id="showUserById" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="showUserById" resultMap="BaseResultMap">
+  
+   select * from user where id in
+   
     <foreach item="arr" collection="array" index="no" open="("
 			separator="," close=")">
 			#{arr}
 		</foreach>
   
   </select>
- 
+  
 </mapper>

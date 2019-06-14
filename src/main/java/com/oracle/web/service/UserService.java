@@ -23,6 +23,8 @@ public interface UserService {
 
 	List<User> showUserByIds(String[] arr);
 
+	List<User> list2();
+
 	
   
 }

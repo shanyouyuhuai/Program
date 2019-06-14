@@ -64,8 +64,8 @@
 			</tr>
              <tr align='center'>
 				<td>注册时间</td>
-				<td><input type='date' name='zhucetime'
-					value='${m.zhucetime }' /></td>
+				<td><input type='date' name='time'
+					value='${m.time }' /></td>
 			</tr>
 			<tr>
 				<td align='center' colspan='2'><input type='submit' value='修改' class="btn btn-primary" />

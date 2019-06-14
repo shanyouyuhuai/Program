@@ -20,5 +20,9 @@ public interface BookMapper {
     int selectCount();
 
 	List<SubBook> showAllByPage();
+
+	List<Book> querybooks(String[] arr);
+
+	List<Book> selectAll2();
     
 }

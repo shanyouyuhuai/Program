@@ -21,4 +21,6 @@ public interface UserMapper {
 	List<User> sesectAllBypage();
 
 	List<User> showUserById(String[] arr);
+
+	List<User> selectall();
 }
