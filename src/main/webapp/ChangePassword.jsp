@@ -29,8 +29,9 @@
 			params : "password=" + password.value,
 			type : "text",
 			success : function(data) {
-
-				if (data !=null) {//找到用户名
+                     
+				 //alert(data);
+				if (null != data && "" != data) {//找到用户名
 
 					pwMsg.style.color = "chartreuse";
 
@@ -158,9 +159,9 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="rePassword" class="col-sm-4 control-label">确认密码</label>
+				<label for="repassword" class="col-sm-4 control-label">确认密码</label>
 				<div class="col-sm-4">
-					<input type="password" name="rePassword" class="form-control" id="rePassword" onblur="queryByrePassword()"/>
+					<input type="password" name="repassword" class="form-control" id="repassword" onblur="queryByrePassword()"/>
 					<span id="rpwMsg"></span>
 				</div>	
 			</div>

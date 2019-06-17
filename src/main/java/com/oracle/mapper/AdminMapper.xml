@@ -65,7 +65,7 @@
     
     <!-- 验证密码 -->
     <select id="queryByPassword" parameterType="Admin" resultMap="BaseResultMap">
-		select username,password from admin where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+		select * from admin where username=#{username,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
 	</select>
   
   

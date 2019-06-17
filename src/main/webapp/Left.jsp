@@ -22,7 +22,7 @@ a {
 <script type="text/javascript">
 	$(function() {
 
-		/* $("#accordion").accordion(); */
+		 $("#accordion").accordion(); 
 
 		$("#btn1").button({
 

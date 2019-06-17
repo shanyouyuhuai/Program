@@ -82,7 +82,7 @@ public class AdminHandler {
 	public String login(@RequestParam("username") String username,@RequestParam("password") String password,
 			Admin admin,HttpServletRequest req,HttpSession session){
 		
-		session.setAttribute("username", username);
+	
 		
 		Admin admin1 = adminService.login(admin.getUsername());
 		
@@ -99,6 +99,7 @@ public class AdminHandler {
 			String str =admin1.getTouxiang().substring(admin1.getTouxiang().lastIndexOf("\\")+1);
 			
 			session.setAttribute("touxiang", str);
+			session.setAttribute("username", username);
 			
 		}
 		
@@ -115,7 +116,7 @@ public class AdminHandler {
 		response.setContentType("text/html;chatset=utf-8");
 		
 		String username = (String) session.getAttribute("username");
-		
+		System.out.println(username);
 		//session.getAttribute("password");
 		
 		session.setAttribute("password", password);
@@ -127,8 +128,12 @@ public class AdminHandler {
 		admin.setPassword(password);
 		
 		Admin a = adminService.queryByPassword(admin);
-		
-		response.getWriter().write(String.valueOf(a));
+		System.out.println(String.valueOf(a));
+		if(a==null){
+		response.getWriter().write("");
+		}else{
+			response.getWriter().write(String.valueOf(a));
+		}
 		
 	} 
 	
@@ -145,8 +150,7 @@ public class AdminHandler {
 	    
 	    Admin a=adminService.changePassword(uname,newpassword);
 			
-	    return  "ShowAdmin";
-
+	    return "redirect:/showAdmin";
 	}
 		
 	
@@ -182,6 +186,8 @@ public class AdminHandler {
 		String uname = (String) session.getAttribute("username");
 		
 		Admin a = adminService.selectByPrimaryKey(uname);
+		
+		System.out.println(a);
 		
 		session.setAttribute("admin", a);
 		
